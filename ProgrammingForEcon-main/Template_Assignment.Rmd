@@ -11,19 +11,19 @@ output: pdf_document
 install.packages("tidyverse")
 install.packages("yaml")
 install.packages("rmarkdown")
+install.packages("cbsodataR")
 ```
 
 ```{r packages}
 require(tidyverse)
 require(rmarkdown)
 require(yaml)
+require(cbsodataR)
 ```
 
 # Title Page
 
-Include your names
-Andre Gouda
-Include the tutorial group number
+Include your names Andre Gouda Include the tutorial group number
 
 Include your tutorial lecturer's name
 
@@ -35,9 +35,9 @@ Use APA referencing throughout your document. [Here's a link to some explanation
 
 Include the following:
 
--   Why is this relevant?
+- Why is this relevant?
 
--   ...
+- ...
 
 # Part 2 - Data Sourcing
 
@@ -46,7 +46,7 @@ Include the following:
 Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
 ```{r loading_data}
-dataset <- midwest
+dataset1 <- read.csv("/data/prijzen_regios.csv")
 ```
 
 midwest is an example dataset included in the tidyverse package
@@ -69,9 +69,9 @@ These are things that are usually included in the metadata of the dataset. For y
 
 Think of things like:
 
--   Do the variables contain health information or SES information?
+- Do the variables contain health information or SES information?
 
--   Have they been measured by interviewing individuals or is the data coming from administrative sources?
+- Have they been measured by interviewing individuals or is the data coming from administrative sources?
 
 *For the sake of this example, I will continue with the assignment...*
 
