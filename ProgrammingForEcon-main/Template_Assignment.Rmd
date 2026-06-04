@@ -1,4 +1,4 @@
----
+`*---
 title: "Template"
 author: "Studentnames and studentnumbers here"
 date: "`r Sys.Date()`"
@@ -46,8 +46,7 @@ Include the following:
 Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
 ```{r loading_data}
-dataset1 <- cbs_get_data("83625NED")
-head(dataset1)
+dataset1 <- read.csv("/data/prijzen_regios.csv")
 ```
 
 midwest is an example dataset included in the tidyverse package
