@@ -1,4 +1,4 @@
----
+`*---
 title: "Template"
 author: "Studentnames and studentnumbers here"
 date: "`r Sys.Date()`"
