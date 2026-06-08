@@ -46,15 +46,28 @@ Include the following:
 Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
 ```{r loading_data}
-dataset1 <- read.csv("/data/prijzen_regios.csv")
+dataset1 <- cbs_get_data("83625NED")
+dataset2 <- cbs_get_data("86161NED")
+
+metadata1 <- cbs_get_meta("83625NED")
+metadata2 <- cbs_get_meta("86161NED")
+
+
 ```
 
-midwest is an example dataset included in the tidyverse package
 
 ## 2.2 Provide a short summary of the dataset(s)
 
 ```{r}
-head(dataset)
+head(dataset1)
+head(dataset2)
+
+names(dataset1)
+names(dataset2)
+
+glimpse(dataset1)
+glimpse(dataset2)
+
 ```
 
 In this case we see 28 variables, but we miss some information on what units they are in. We also don't know anything about the year/moment in which this data has been captured.
@@ -82,7 +95,55 @@ Think of things like:
 Say we want to include only larger distances (above 2) in our dataset, we can filter for this.
 
 ```{r data_cleaning}
-mean(dataset$percollege)
+housing <- dataset1 %>%
+  select(
+    RegioS,
+    Perioden,
+    GemiddeldeVerkoopprijs_1
+  )
+
+head(housing)
+income <- dataset2 %>%
+  filter(
+    Populatie == "1050010",
+    KenmerkenVanHuishoudens == "1050010"
+  ) %>%
+  select(
+    RegioS,
+    Perioden,
+    GemiddeldBesteedbaarInkomen_5
+  ) %>%
+  drop_na()
+
+head(income)
+nrow(income)
+
+housing <- housing %>%
+  drop_na()
+
+income <- income %>%
+  drop_na()
+
+nrow(housing)
+
+nrow(income)
+
+unique(housing$RegioS)[1:20]
+
+unique(income$RegioS)[1:20]
+combined <- housing %>%
+  inner_join(
+    income,
+    by = c("RegioS", "Perioden")
+  )
+
+head(combined)
+nrow(combined)
+summary(combined)
+unique(combined$Perioden)
+
+unique(dataset2$Populatie)
+unique(dataset2$KenmerkenVanHuishoudens)
 ```
 
 Please use a separate 'R block' of code for each type of cleaning. So, e.g. one for missing values, a new one for removing unnecessary variables etc.
@@ -92,25 +153,81 @@ Please use a separate 'R block' of code for each type of cleaning. So, e.g. one 
 Variable 1
 
 ```{r gen_var1}
+combined <- combined %>%
+  mutate(
+    Year = as.numeric(substr(Perioden, 1, 4))
+  )
 
+head(combined)
 ```
 
 Variable 2
 
 ```{r gen_var2}
+combined <- combined %>%
+  mutate(
+    AffordabilityRatio = GemiddeldeVerkoopprijs_1 / (GemiddeldBesteedbaarInkomen_5 * 1000)
+  )
 
+head(combined)
+summary(combined$AffordabilityRatio)
 ```
 
 ## 3.3 Visualize temporal variation
 
 ```{r}
+yearly_prices <- combined %>%
+  group_by(Year) %>%
+  summarise(
+    AveragePrice = mean(GemiddeldeVerkoopprijs_1)
+  )
+
+ggplot(yearly_prices,
+       aes(x = Year,
+           y = AveragePrice)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Average House Prices in the Netherlands (2011-2024)",
+    x = "Year",
+    y = "Average House Price (€)"
+  ) +
+  theme_minimal()
+yearly_affordability <- combined %>%
+  group_by(Year) %>%
+  summarise(
+    AverageAffordability = mean(AffordabilityRatio)
+  )
+
+ggplot(yearly_affordability,
+       aes(x = Year,
+           y = AverageAffordability)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Average Housing Affordability Ratio (2011-2024)",
+    x = "Year",
+    y = "House Price / Disposable Income"
+  ) +
+  theme_minimal()
 
 ```
 
 ## 3.4 Visualize spatial variation
 
 ```{r visualise_map}
+top_regions <- combined %>%
+  filter(Year == 2024) %>%
+  arrange(desc(GemiddeldeVerkoopprijs_1)) %>%
+  slice(1:15)
 
+ggplot(top_regions,
+       aes(
+         x = reorder(RegioS, GemiddeldeVerkoopprijs_1),
+         y = GemiddeldeVerkoopprijs_1
+       )) +
+  geom_col() +
+  coord_flip()
 ```
 
 Here you provide a description of why the plot above is relevant to your specific social problem.
@@ -120,19 +237,18 @@ Here you provide a description of why the plot above is relevant to your specifi
 What is the poverty rate by state?
 
 ```{r visualise_subpopulations}
-dataset$inmetro <- dataset$inmetro %>% as.factor()
-# Boxplot of poverty rate by state using the 'midwest' dataset
-ggplot(dataset, aes(x = inmetro, y = percadultpoverty)) +
-  geom_boxplot() +
+income_2024 <- combined %>%
+  filter(Year == 2024)
+
+ggplot(income_2024,
+       aes(x = GemiddeldBesteedbaarInkomen_5)) +
+  geom_histogram(bins = 20) +
   labs(
-    title = "Distribution of Poverty Rates by Metropolitan status (Midwest counties)",
-    x = "Metropolitan Area",
-    y = "Poverty Rate of Adults (%)"
+    title = "Distribution of Disposable Income Across Regions (2024)",
+    x = "Disposable Income (thousand €)",
+    y = "Number of Regions"
   ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right"
-  )
+  theme_minimal()
 ```
 
 Here you provide a description of why the plot above is relevant to your specific social problem.
@@ -142,7 +258,19 @@ Here you provide a description of why the plot above is relevant to your specifi
 Analyze the relationship between two variables.
 
 ```{r analysis}
-
+ggplot(combined,
+       aes(
+         x = GemiddeldBesteedbaarInkomen_5,
+         y = GemiddeldeVerkoopprijs_1
+       )) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Income and House Prices",
+    x = "Disposable Income",
+    y = "House Price"
+  ) +
+  theme_minimal()
 ```
 
 Here you provide a description of why the plot above is relevant to your specific social problem.
