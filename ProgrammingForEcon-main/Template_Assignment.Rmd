@@ -353,7 +353,7 @@ combined <- combined %>%
 top_regions <- combined %>%
   filter(Year == 2024) %>%
   arrange(desc(GemiddeldeVerkoopprijs_1)) %>%
-  slice(1:20)
+  slice(1:15)
 ```
 
 
@@ -366,15 +366,56 @@ ggplot(top_regions,
   geom_col() +
   coord_flip() +
   labs(
-    title = "Top 20 Regions by Average House Price in 2024",
+    title = "Top 15 Regions by Average House Price in 2024",
     x = "Region",
     y = "Average House Price (€)"
   ) +
   theme_minimal()
 ```
-**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
+
 **Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
 Here you provide a description of why the plot above is relevant to your specific social problem.
+
+
+```{r}
+gemeente_map <- cbs_get_sf(
+  region = "gemeente",
+  year = 2024
+)
+
+map_data <- combined %>%
+  filter(Year == 2024)
+
+map_combined <- gemeente_map %>%
+  left_join(
+    map_data,
+    by = c("statcode" = "RegioS")
+  )
+
+top15_codes <- top_regions$RegioS
+
+map_combined <- map_combined %>%
+  mutate(
+    Top15 = ifelse(statcode %in% top15_codes,
+                   "Top 15",
+                   "Other municipalities")
+  )
+ggplot(map_combined) +
+  geom_sf(aes(fill = Top15),
+          color = "white",
+          linewidth = 0.05) +
+  scale_fill_manual(
+    values = c(
+      "Top 15" = "red",
+      "Other municipalities" = "grey"
+    )
+  ) +
+  labs(
+    title = "Top 15 Most Expensive Municipalities in 2024",
+    fill = ""
+  ) +
+  theme_minimal()
+```
 
 ## 3.5 Visualize sub-population variation
 
