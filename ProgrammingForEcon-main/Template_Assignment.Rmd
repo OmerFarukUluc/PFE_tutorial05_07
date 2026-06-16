@@ -23,6 +23,24 @@ require(cbsodataR)
 
 # Title Page
 **Notitie voor de groep:** Vul hier de titel van het project, de namen van alle groepsleden, studentnummers, het tutorialgroepnummer en de naam van de tutorialdocent in. Zorg dat dit er netjes uitziet als een echte titelpagina.
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
 
 Include your names Andre Gouda Include the tutorial group number
 
@@ -130,12 +148,24 @@ Think of things like:
 
 *For the sake of this example, I will continue with the assignment...*
 
+The dataset contains a mix of variable types. "RegioS" is a categorical variable that indicates the region, and "Perioden" is a time variable that shows the year of observation. Both "GemiddeldeVerkoopprijs_1" and "GemiddeldBesteedbaarInkomen_5" are numerical variables.
+The housing price data comes from administrative sources, specifically transaction records from the Kadaster (Land Registry). This means the prices reflect actual sales, not asking prices. The disposable income variable is a socioeconomic variable, also from administrative sources like tax records, and is measured in thousands of euros per household per year.
+One limitation worth noting is that both variables are measured at the regional level, so they represent averages. This means we cannot say anything about individual households. A region with a high average income may still have many people who struggle to afford a house there.
+
+
 # Part 3 - Quantifying
 
 ## 3.1 Data cleaning
 **Notitie voor de groep:** Leg hier uit welke stappen jullie nemen om de data schoon te maken. Beschrijf dat jullie alleen de relevante kolommen selecteren, missende waarden verwijderen en de twee datasets samenvoegen op regio en periode. Leg ook uit waarom jullie filteren op specifieke huishoudcategorieën in de inkomensdataset. Noem dat `inner_join()` alleen observaties bewaart die in beide datasets voorkomen.
 
 Say we want to include only larger distances (above 2) in our dataset, we can filter for this.
+
+Before merging the two datasets, we first selected only the columns we actually need. For the housing dataset we kept "RegioS", "Perioden" and "GemiddeldeVerkoopprijs_1", and for the income dataset we kept "RegioS", "Perioden" and "GemiddeldBesteedbaarInkomen_5".
+We also filtered the income dataset on a specific household type, because the original dataset contains multiple population categories. We only kept the category that represents all private households, to make sure we are comparing the right group to the housing prices.
+After selecting the relevant columns, we removed all rows with missing values in both datasets using "drop_na()". This is important because missing values in either the price or income variable would make the analysis unreliable. After cleaning, the housing dataset had "r nrow(housing)" rows and the income dataset had "r nrow(income)" rows.
+Finally, we merged the two datasets using "inner_join()" on both "RegioS" and "Perioden". This means we only kept observations that appear in both datasets. The combined dataset ended up with "r nrow(combined)" rows, which means some regions or years were lost because they did not appear in both datasets. This is a limitation we should keep in mind when interpreting the results.
+
+
 
 ```{r data_cleaning}
 housing <- dataset1 %>%
@@ -222,8 +252,12 @@ Please use a separate 'R block' of code for each type of cleaning. So, e.g. one 
 
 ## 3.2 Generate necessary variables
 
-Variable 1
+Variable 1 - Year
 **Notitie voor de groep:** Leg hier uit waarom jullie de variabele `Year` maken. De originele CBS-periode staat bijvoorbeeld als `2011JJ00`, maar voor grafieken is een numeriek jaar makkelijker te gebruiken. Beschrijf dat jullie met `substr()` de eerste vier tekens uit `Perioden` halen.
+
+
+The first variable we created is "Year". In the original CBS data, the time variable "Perioden" is stored as a character string in the format `2011JJ00`, which is not directly usable in plots or calculations. By extracting the first four characters using "substr()" and converting them to a number with "as.numeric()", we get a clean numeric year variable that we can use on the x-axis of our time series plots.
+
 
 ```{r gen_var1}
 combined <- combined %>%
@@ -234,8 +268,12 @@ combined <- combined %>%
 head(combined)
 ```
 
-Variable 2
+Variable 2 - AffordabilityRatio
 **Notitie voor de groep:** Leg hier uit waarom jullie de `AffordabilityRatio` maken. Deze ratio vergelijkt de gemiddelde huizenprijs met het gemiddelde besteedbaar inkomen. Een hogere ratio betekent dat woningen minder betaalbaar zijn. Leg ook uit waarom het inkomen met 1000 wordt vermenigvuldigd: de inkomensvariabele staat in duizenden euro’s.
+
+The second variable is "AffordabilityRatio". This variable divides the average house price by the average disposable income per household. Because the income variable is stored in thousands of euros, we multiply it by 1000 before dividing. The result tells us how many annual incomes a household would need to buy an average house in that region and year. A higher ratio means housing is less affordable. This variable is central to our analysis because it combines both datasets into one meaningful measure of the housing problem.
+For example, a ratio of 8 means that an average household would need 8 years of their entire disposable income to buy an average house, without spending anything else. This makes the affordability problem more concrete.
+
 
 ```{r gen_var2}
 combined <- combined %>%
