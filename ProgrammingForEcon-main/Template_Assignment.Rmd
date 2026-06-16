@@ -53,17 +53,18 @@ Use APA referencing throughout your document. [Here's a link to some explanation
 
 **Notitie voor de groep:** Beschrijf hier het sociale probleem dat jullie onderzoeken. Leg uit dat de woningmarkt in Nederland voor veel mensen minder betaalbaar is geworden. Bespreek waarom dit maatschappelijk relevant is, bijvoorbeeld voor starters, studenten, jonge huishoudens en middeninkomens. Leg ook kort uit waarom het nuttig is om huizenprijzen te vergelijken met besteedbaar inkomen. Gebruik hier minimaal één APA-bron om de relevantie van het probleem te ondersteunen.
 
-Het sociale probleem
-De Nederlandse woningmarkt is de afgelopen jaren voor grote groepen mensen steeds minder toegankelijk geworden. Wonen is duur voor veel mensen die een woning zoeken — met name voor starters, mensen met een laag- of middeninkomen en alleenstaanden. De huizenprijzen zijn harder gestegen dan de maximale leencapaciteit op basis van inkomen, wat de betaalbaarheid van een woning sinds 2013 fors heeft verslechterd (De Nederlandsche Bank [DNB], 2026).
-De prijsstijgingen zijn aanzienlijk: een bestaande koopwoning was in 2024 gemiddeld 8,7 procent duurder dan in 2023, en in 2025 lagen de huizenprijzen gemiddeld nog eens 8,5 procent hoger dan het jaar daarvoor (Centraal Bureau voor de Statistiek [CBS], 2025a; DNB, 2026). Waar de gemiddelde woningprijs in 2023 nog op €416.000 lag, is deze in 2024 fors toegenomen tot gemiddeld €451.000 (BPD, z.d.).
 
-Waarom is dit relevant?
-De betaalbaarheidscrisis op de woningmarkt raakt een grote en diverse groep mensen in de Nederlandse samenleving. Zo'n 3 miljoen huishoudens — met een inkomen tussen modaal en twee keer modaal — hebben geen toegang tot de woningmarkt omdat beschikbare woningen boven hun budget liggen en er onvoldoende passend aanbod is (BPD, z.d.).
-Voor jongeren en starters is de situatie bijzonder nijpend. Het kopen of huren van een woning wordt steeds duurder, wat het moeilijk maakt voor starters om een woning te vinden, zoals zichtbaar is in het groeiende aandeel jongvolwassenen van 25 tot 30 jaar dat nog bij hun ouders woont (CBS, 2025b). De problemen die jongeren en starters momenteel hebben om de woningmarkt te betreden, zijn duidelijk zichtbaar in de eigenwoningbezitscijfers: pas bij de leeftijdsgroep van 35 tot 39 jaar is hetzelfde niveau van eigenwoningbezit als vroeger terug te zien (ABF Research, 2025).
-Ook studenten en jonge huishoudens worden hard geraakt door de krapte op de huurmarkt. Het aantal huurtransacties in de vrije sector lag eind 2025 maar liefst 38 procent lager dan een jaar eerder, en in de middensector daalde het aantal verhuurde woningen in de vier grote steden zelfs met 50 tot 70 procent (NVM, 2026).
+The Social Problem
+The Dutch housing market has become increasingly inaccessible for large groups of people in recent years. Housing is expensive for many people searching for a home  particularly for first-time buyers, people with low or middle incomes, and single-person households. House prices have risen faster than the maximum borrowing capacity based on income, which has significantly worsened housing affordability since 2013 (De Nederlandsche Bank [DNB], 2026).
+The price increases are considerable: an existing owner-occupied home was on average 8.7 percent more expensive in 2024 than in 2023, and in 2025 house prices were on average a further 8.5 percent higher than the year before (Centraal Bureau voor de Statistiek [CBS], 2025a; DNB, 2026). While the average house price in 2023 was still €416,000, this increased substantially to an average of €451,000 in 2024 (BPD, n.d.).
 
-Waarom huizenprijzen vergelijken met besteedbaar inkomen?
-Om de betaalbaarheid van de woningmarkt werkelijk te begrijpen, is het noodzakelijk om huizenprijzen te relateren aan het besteedbaar inkomen van huishoudens. Huizenprijzen stijgen sneller dan de inkomens, waardoor de koopkracht van huizenkopers afneemt (Garantiemakelaars, 2025). Alleen door deze twee grootheden naast elkaar te leggen, wordt zichtbaar hoe groot de kloof werkelijk is — en voor wie wonen onbereikbaar dreigt te worden. Een absolute prijs van €451.000 zegt weinig zonder te weten wat een huishouden er maandelijks tegenover kan stellen.
+Why is this relevant?
+The affordability crisis in the housing market affects a large and diverse group of people in Dutch society. Approximately 3 million households  with an income between modal and twice the modal income  have no access to the housing market because available homes exceed their budget and there is insufficient suitable supply (BPD, n.d.).
+For young people and first-time buyers, the situation is particularly acute. Buying or renting a home is becoming increasingly expensive, making it difficult for first-time buyers to find housing, as reflected in the growing share of young adults between the ages of 25 and 30 still living with their parents (CBS, 2025b). The difficulties that young people and first-time buyers currently face in entering the housing market are clearly visible in homeownership statistics: it is not until the 35 to 39 age group that the same level of homeownership as in previous years is seen again (ABF Research, 2025).
+Students and young households are also severely affected by the tightness in the rental market. The number of rental transactions in the private sector was as much as 38 percent lower at the end of 2025 than a year earlier, and in the mid-range rental sector the number of homes let in the four major cities fell by as much as 50 to 70 percent (NVM, 2026).
+
+Why compare house prices with disposable income?
+In order to truly understand the affordability of the housing market, it is necessary to relate house prices to the disposable income of households. House prices are rising faster than incomes, which reduces the purchasing power of home buyers (Garantiemakelaars, 2025). Only by placing these two figures side by side does it become clear how large the gap truly is  and for whom housing risks becoming unattainable. An absolute price of €451,000 says little without knowing what a household can put against it each month.
 
 Include the following:
 
@@ -77,16 +78,16 @@ Include the following:
 
 **Notitie voor de groep:** Leg hier uit welke datasets jullie gebruiken en waar ze vandaan komen. Noem dat de data afkomstig is van CBS StatLine. Beschrijf kort dat één dataset informatie geeft over gemiddelde verkoopprijzen van bestaande koopwoningen en dat de andere dataset informatie geeft over gemiddeld besteedbaar inkomen van huishoudens. Vermeld ook waarom deze twee datasets samen nodig zijn voor jullie onderzoek.
 
-Welke datasets gebruiken wij en waar komen ze vandaan?
-Voor dit onderzoek maken wij gebruik van twee datasets die beide afkomstig zijn van CBS StatLine, de officiële statistiekendatabase van het Centraal Bureau voor de Statistiek (CBS). CBS StatLine is een betrouwbare en breed erkende bron binnen Nederland, die regelmatig wordt bijgewerkt met actuele cijfers over uiteenlopende maatschappelijke en economische onderwerpen.
-Dataset 1: Gemiddelde verkoopprijzen van bestaande koopwoningen
-De eerste dataset bevat informatie over de gemiddelde verkoopprijzen van bestaande koopwoningen in Nederland. Deze dataset geeft inzicht in hoe de huizenprijzen zich over de jaren heen hebben ontwikkeld, uitgesplitst naar regio en woningtype. Hiermee kunnen wij de prijsontwikkeling op de Nederlandse woningmarkt in kaart brengen.
+Which datasets do we use and where do they come from?
+For this research, we make use of two datasets that both originate from CBS StatLine, the official statistics database of Statistics Netherlands (Centraal Bureau voor de Statistiek [CBS], n.d.a). CBS StatLine is a reliable and widely recognised source within the Netherlands, which is regularly updated with current figures on a wide range of social and economic topics.
 
-Dataset 2: Gemiddeld besteedbaar inkomen van huishoudens
-De tweede dataset bevat informatie over het gemiddeld besteedbaar inkomen van huishoudens in Nederland. Het besteedbaar inkomen geeft aan hoeveel geld huishoudens daadwerkelijk beschikbaar hebben na aftrek van belastingen en premies. Deze dataset maakt het mogelijk om de financiële positie van verschillende huishoudensgroepen in kaart te brengen.
+Dataset 1: Average selling prices of existing owner-occupied homes
+The first dataset contains information on the average selling prices of existing owner-occupied homes in the Netherlands. This dataset provides insight into how house prices have developed over the years, broken down by region and housing type (CBS, n.d.a). This allows us to map the price developments on the Dutch housing market.
+Dataset 2: Average disposable income of households
+The second dataset contains information on the average disposable income of households in the Netherlands. Disposable income refers to the amount of money households actually have available after the deduction of taxes and social contributions (CBS, n.d.b). This dataset makes it possible to map the financial position of different household groups.
 
-Waarom zijn beide datasets samen nodig?
-Beide datasets zijn noodzakelijk om de centrale vraag van ons onderzoek te kunnen beantwoorden. Een huizenprijs op zichzelf zegt namelijk weinig over de betaalbaarheid van de woningmarkt. Pas wanneer de prijsontwikkeling van woningen wordt afgezet tegen de ontwikkeling van het besteedbaar inkomen, wordt duidelijk of wonen voor huishoudens daadwerkelijk minder betaalbaar is geworden. Door de twee datasets te combineren, kunnen wij berekenen in hoeverre de groei van huizenprijzen de groei van inkomens heeft overtroffen, en wat dit betekent voor groepen zoals starters, studenten, jonge huishoudens en middeninkomens.
+Why are both datasets needed together?
+Both datasets are necessary in order to answer the central question of our research. A house price on its own says little about the affordability of the housing market. Only when the development of house prices is compared to the development of disposable income does it become clear whether housing has actually become less affordable for households (De Nederlandsche Bank [DNB], 2026). By combining the two datasets, we can calculate to what extent the growth in house prices has outpaced the growth in incomes, and what this means for groups such as first-time buyers, students, young households, and middle-income earners (CBS, n.d.a; CBS, n.d.b).
 
 Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
@@ -132,24 +133,24 @@ huishouden_meta %>%
 ## 2.2 Provide a short summary of the dataset(s)
 
 **Notitie voor de groep:** Geef hier een korte samenvatting van beide datasets. Beschrijf hoeveel rijen en kolommen de datasets ongeveer hebben, welke jaren erin zitten, welke regio’s worden gebruikt en welke variabelen belangrijk zijn voor jullie analyse. Leg vooral de betekenis uit van `RegioS`, `Perioden`, `GemiddeldeVerkoopprijs_1` en `GemiddeldBesteedbaarInkomen_5`. Vermeld ook de meeteenheden, bijvoorbeeld euro’s en duizend euro’s.
-Dataset 1: Gemiddelde verkoopprijzen van bestaande koopwoningen
-De eerste dataset (dataset1) bevat gegevens over de gemiddelde verkoopprijzen van bestaande koopwoningen in Nederland (Centraal Bureau voor de Statistiek [CBS], z.d.a). De dataset bestaat uit 23.095 rijen en 3 kolommen. De jaren in de dataset lopen vanaf 1995 tot en met de meest recente beschikbare jaren. De belangrijkste variabelen zijn:
+Dataset 1: Average selling prices of existing owner-occupied homes
+The first dataset (dataset1) contains data on the average selling prices of existing owner-occupied homes in the Netherlands (Centraal Bureau voor de Statistiek [CBS], n.d.a). The dataset consists of 23,095 rows and 3 columns. The years in the dataset range from 1995 to the most recently available years. The most important variables are:
 
-RegioS: deze variabele geeft aan voor welke regio de gegevens gelden. In deze dataset wordt de code "NL01" gebruikt, wat staat voor Nederland als geheel.
-Perioden: deze variabele geeft het jaartal aan waarover de meting is gedaan, weergegeven in het formaat "1995JJ00", "1996JJ00", enzovoort. "JJ00" staat voor een jaargemiddelde.
-GemiddeldeVerkoopprijs_1: dit is de belangrijkste variabele voor ons onderzoek. Het geeft de gemiddelde verkoopprijs weer van bestaande koopwoningen in Nederland, uitgedrukt in euro's. In 1995 bedroeg deze prijs bijvoorbeeld €93.750, oplopend tot €172.050 in het jaar 2000 (CBS, z.d.a).
+RegioS: this variable indicates the region to which the data applies. In this dataset, the code "NL01" is used, which represents the Netherlands as a whole.
+Perioden: this variable indicates the year over which the measurement was taken, displayed in the format "1995JJ00", "1996JJ00", and so on. "JJ00" refers to an annual average.
+GemiddeldeVerkoopprijs_1: this is the most important variable for our research. It represents the average selling price of existing owner-occupied homes in the Netherlands, expressed in euros. In 1995, for example, this price was €93,750, rising to €172,050 in the year 2000 (CBS, n.d.a).
 
-Dataset 2: Gemiddeld besteedbaar inkomen van huishoudens
-De tweede dataset (dataset2) bevat gegevens over het inkomen van huishoudens in Nederland (CBS, z.d.b). De dataset bestaat uit 6 rijen en 20 kolommen. De jaren in de dataset lopen vanaf 2011 tot en met 2016, op basis van de zichtbare observaties. De belangrijkste variabelen zijn:
+Dataset 2: Average disposable income of households
+The second dataset (dataset2) contains data on the income of households in the Netherlands (CBS, n.d.b). The dataset consists of 6 rows and 20 columns. Based on the visible observations, the years in the dataset range from 2011 to 2016. The most important variables are:
 
-Populatie: een code die de populatiegroep aanduidt waarop de meting betrekking heeft.
-KenmerkenVanHuishoudens: een code die het type huishouden beschrijft, bijvoorbeeld eenpersoonshuishoudens of meerpersoonshuishoudens.
-RegioS: net als in dataset 1 geeft deze variabele de regio aan. Ook hier wordt "NL01" gebruikt voor heel Nederland (CBS, z.d.b).
-Perioden: het meetjaar, weergegeven in hetzelfde formaat als dataset 1, bijvoorbeeld "2011JJ00".
-GemiddeldBesteedbaarInkomen_5: dit is de belangrijkste variabele voor ons onderzoek. Het geeft het gemiddeld besteedbaar inkomen van huishoudens weer, uitgedrukt in duizenden euro's. Zo bedroeg het gemiddeld besteedbaar inkomen in 2011 ongeveer €36.600 (weergegeven als 36,6 in de dataset) (CBS, z.d.b).
+Populatie: a code indicating the population group to which the measurement relates.
+KenmerkenVanHuishoudens: a code describing the type of household, for example single-person households or multi-person households.
+RegioS: just as in dataset 1, this variable indicates the region. Here too, "NL01" is used for the Netherlands as a whole (CBS, n.d.b).
+Perioden: the measurement year, displayed in the same format as dataset 1, for example "2011JJ00".
+GemiddeldBesteedbaarInkomen_5: this is the most important variable for our research. It represents the average disposable income of households, expressed in thousands of euros. For example, the average disposable income in 2011 was approximately €36,600 (displayed as 36.6 in the dataset) (CBS, n.d.b).
 
-Waarom zijn deze variabelen samen relevant?
-Door de variabele GemiddeldeVerkoopprijs_1 uit dataset 1 te koppelen aan de variabele GemiddeldBesteedbaarInkomen_5 uit dataset 2, via de gemeenschappelijke variabelen RegioS en Perioden, kunnen wij per jaar analyseren hoe de verhouding tussen huizenprijzen en besteedbaar inkomen zich heeft ontwikkeld (De Nederlandsche Bank [DNB], 2026). Let hierbij op het verschil in meeteenheden: de verkoopprijzen zijn uitgedrukt in volledige euro's, terwijl het besteedbaar inkomen is uitgedrukt in duizenden euro's. Bij de analyse dient hiervoor gecorrigeerd te worden (CBS, z.d.a; CBS, z.d.b)
+Why are these variables relevant together?
+By linking the variable GemiddeldeVerkoopprijs_1 from dataset 1 to the variable GemiddeldBesteedbaarInkomen_5 from dataset 2, through the shared variables RegioS and Perioden, we can analyse per year how the ratio between house prices and disposable income has developed (De Nederlandsche Bank [DNB], 2026). It is important to note the difference in units of measurement: the selling prices are expressed in full euros, while the disposable income is expressed in thousands of euros. This difference must be corrected for during the analysis (CBS, n.d.a; CBS, n.d.b).
 ```{r}
 head(dataset1)
 
