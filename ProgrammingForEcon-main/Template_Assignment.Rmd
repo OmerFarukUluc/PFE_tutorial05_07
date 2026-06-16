@@ -1,4 +1,5 @@
 ---
+`*---
 title: "Template"
 author: "Studentnames and studentnumbers here"
 date: "`r Sys.Date()`"
@@ -8,22 +9,27 @@ output: pdf_document
 # Set-up your environment
 
 ```{r package_install, include=FALSE}
+```
+
+
+```{r package_install, include=FALSE}
 install.packages("tidyverse")
 install.packages("yaml")
 install.packages("rmarkdown")
+install.packages("cbsodataR")
 ```
 
 ```{r packages}
 require(tidyverse)
 require(rmarkdown)
 require(yaml)
+require(cbsodataR)
 ```
 
 # Title Page
+**Notitie voor de groep:** Vul hier de titel van het project, de namen van alle groepsleden, studentnummers, het tutorialgroepnummer en de naam van de tutorialdocent in. Zorg dat dit er netjes uitziet als een echte titelpagina.
 
-Include your names
-Andre Gouda
-Include the tutorial group number
+Include your names Andre Gouda Include the tutorial group number
 
 Include your tutorial lecturer's name
 
@@ -32,30 +38,47 @@ Include your tutorial lecturer's name
 Use APA referencing throughout your document. [Here's a link to some explanation.](https://www.mendeley.com/guides/apa-citation-guide/)
 
 ## 1.1 Describe the Social Problem
+**Notitie voor de groep:** Beschrijf hier het sociale probleem dat jullie onderzoeken. Leg uit dat de woningmarkt in Nederland voor veel mensen minder betaalbaar is geworden. Bespreek waarom dit maatschappelijk relevant is, bijvoorbeeld voor starters, studenten, jonge huishoudens en middeninkomens. Leg ook kort uit waarom het nuttig is om huizenprijzen te vergelijken met besteedbaar inkomen. Gebruik hier minimaal één APA-bron om de relevantie van het probleem te ondersteunen.
 
 Include the following:
 
--   Why is this relevant?
+- Why is this relevant?
 
--   ...
+- ...
 
 # Part 2 - Data Sourcing
 
 ## 2.1 Load in the data
+**Notitie voor de groep:** Leg hier uit welke datasets jullie gebruiken en waar ze vandaan komen. Noem dat de data afkomstig is van CBS StatLine. Beschrijf kort dat één dataset informatie geeft over gemiddelde verkoopprijzen van bestaande koopwoningen en dat de andere dataset informatie geeft over gemiddeld besteedbaar inkomen van huishoudens. Vermeld ook waarom deze twee datasets samen nodig zijn voor jullie onderzoek.
 
 Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
 ```{r loading_data}
-dataset <- midwest
+dataset1 <- cbs_get_data("83625NED")
+dataset2 <- cbs_get_data("86161NED")
+
+metadata1 <- cbs_get_meta("83625NED")
+metadata2 <- cbs_get_meta("86161NED")
+
+
 ```
 
-midwest is an example dataset included in the tidyverse package
 
 ## 2.2 Provide a short summary of the dataset(s)
+**Notitie voor de groep:** Geef hier een korte samenvatting van beide datasets. Beschrijf hoeveel rijen en kolommen de datasets ongeveer hebben, welke jaren erin zitten, welke regio’s worden gebruikt en welke variabelen belangrijk zijn voor jullie analyse. Leg vooral de betekenis uit van `RegioS`, `Perioden`, `GemiddeldeVerkoopprijs_1` en `GemiddeldBesteedbaarInkomen_5`. Vermeld ook de meeteenheden, bijvoorbeeld euro’s en duizend euro’s.
 
 ```{r}
-head(dataset)
+head(dataset1)
+head(dataset2)
+
+names(dataset1)
+names(dataset2)
+
+glimpse(dataset1)
+glimpse(dataset2)
+
 ```
+**Notitie voor de groep:** Gebruik de output van `head()`, `names()` en `glimpse()` om in gewone zinnen te beschrijven hoe de data eruitziet. Schrijf niet alleen dat er kolommen zijn, maar leg uit welke kolommen jullie echt gebruiken en waarom.
 
 In this case we see 28 variables, but we miss some information on what units they are in. We also don't know anything about the year/moment in which this data has been captured.
 
@@ -66,83 +89,208 @@ inline_code = TRUE
 These are things that are usually included in the metadata of the dataset. For your project, you need to provide us with the information from your metadata that we need to understand your dataset of choice.
 
 ## 2.3 Describe the type of variables included
+**Notitie voor de groep:** Beschrijf hier het type variabelen. `RegioS` is een categorische variabele, `Perioden` is een tijdsvariabele, en de huizenprijs en het besteedbaar inkomen zijn numerieke variabelen. Leg ook uit dat de data geaggregeerde regionale data is en dus geen persoonlijke gegevens van individuele mensen bevat. Benoem dat inkomen kan worden gezien als een sociaaleconomische variabele.
 
 Think of things like:
 
--   Do the variables contain health information or SES information?
+- Do the variables contain health information or SES information?
 
--   Have they been measured by interviewing individuals or is the data coming from administrative sources?
+- Have they been measured by interviewing individuals or is the data coming from administrative sources?
 
 *For the sake of this example, I will continue with the assignment...*
 
 # Part 3 - Quantifying
 
 ## 3.1 Data cleaning
+**Notitie voor de groep:** Leg hier uit welke stappen jullie nemen om de data schoon te maken. Beschrijf dat jullie alleen de relevante kolommen selecteren, missende waarden verwijderen en de twee datasets samenvoegen op regio en periode. Leg ook uit waarom jullie filteren op specifieke huishoudcategorieën in de inkomensdataset. Noem dat `inner_join()` alleen observaties bewaart die in beide datasets voorkomen.
 
 Say we want to include only larger distances (above 2) in our dataset, we can filter for this.
 
 ```{r data_cleaning}
-mean(dataset$percollege)
+housing <- dataset1 %>%
+  select(
+    RegioS,
+    Perioden,
+    GemiddeldeVerkoopprijs_1
+  )
+
+head(housing)
+income <- dataset2 %>%
+  filter(
+    Populatie == "1050010",
+    KenmerkenVanHuishoudens == "1050010"
+  ) %>%
+  select(
+    RegioS,
+    Perioden,
+    GemiddeldBesteedbaarInkomen_5
+  ) %>%
+  drop_na()
+
+head(income)
+nrow(income)
+
+housing <- housing %>%
+  drop_na()
+
+income <- income %>%
+  drop_na()
+
+nrow(housing)
+
+nrow(income)
+
+unique(housing$RegioS)[1:20]
+
+unique(income$RegioS)[1:20]
+combined <- housing %>%
+  inner_join(
+    income,
+    by = c("RegioS", "Perioden")
+  )
+
+head(combined)
+nrow(combined)
+summary(combined)
+unique(combined$Perioden)
+
+unique(dataset2$Populatie)
+unique(dataset2$KenmerkenVanHuishoudens)
 ```
+**Notitie voor de groep:** Schrijf onder deze code kort wat er is gebeurd. Bijvoorbeeld: eerst is een aparte housing-dataset gemaakt, daarna een aparte income-dataset. Vervolgens zijn missende waarden verwijderd en zijn de datasets samengevoegd. Gebruik de output van `nrow()` om te beschrijven hoeveel observaties overblijven na het opschonen.
 
 Please use a separate 'R block' of code for each type of cleaning. So, e.g. one for missing values, a new one for removing unnecessary variables etc.
 
 ## 3.2 Generate necessary variables
 
 Variable 1
+**Notitie voor de groep:** Leg hier uit waarom jullie de variabele `Year` maken. De originele CBS-periode staat bijvoorbeeld als `2011JJ00`, maar voor grafieken is een numeriek jaar makkelijker te gebruiken. Beschrijf dat jullie met `substr()` de eerste vier tekens uit `Perioden` halen.
 
 ```{r gen_var1}
+combined <- combined %>%
+  mutate(
+    Year = as.numeric(substr(Perioden, 1, 4))
+  )
 
+head(combined)
 ```
 
 Variable 2
+**Notitie voor de groep:** Leg hier uit waarom jullie de `AffordabilityRatio` maken. Deze ratio vergelijkt de gemiddelde huizenprijs met het gemiddelde besteedbaar inkomen. Een hogere ratio betekent dat woningen minder betaalbaar zijn. Leg ook uit waarom het inkomen met 1000 wordt vermenigvuldigd: de inkomensvariabele staat in duizenden euro’s.
 
 ```{r gen_var2}
+combined <- combined %>%
+  mutate(
+    AffordabilityRatio = GemiddeldeVerkoopprijs_1 / (GemiddeldBesteedbaarInkomen_5 * 1000)
+  )
 
+head(combined)
+summary(combined$AffordabilityRatio)
 ```
 
 ## 3.3 Visualize temporal variation
+**Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis.
 
 ```{r}
+yearly_prices <- combined %>%
+  group_by(Year) %>%
+  summarise(
+    AveragePrice = mean(GemiddeldeVerkoopprijs_1)
+  )
+
+ggplot(yearly_prices,
+       aes(x = Year,
+           y = AveragePrice)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Average House Prices in the Netherlands (2011-2024)",
+    x = "Year",
+    y = "Average House Price (€)"
+  ) +
+  theme_minimal()
+yearly_affordability <- combined %>%
+  group_by(Year) %>%
+  summarise(
+    AverageAffordability = mean(AffordabilityRatio)
+  )
+
+ggplot(yearly_affordability,
+       aes(x = Year,
+           y = AverageAffordability)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Average Housing Affordability Ratio (2011-2024)",
+    x = "Year",
+    y = "House Price / Disposable Income"
+  ) +
+  theme_minimal()
 
 ```
 
 ## 3.4 Visualize spatial variation
+**Notitie voor de groep:** Leg hier uit waarom regionale verschillen belangrijk zijn. Deze grafiek laat zien welke regio’s in 2024 de hoogste gemiddelde huizenprijzen hebben. Bespreek of sommige regio’s duidelijk duurder zijn dan andere en waarom dit relevant is voor het sociale probleem van woningbetaalbaarheid.
 
 ```{r visualise_map}
+top_regions <- combined %>%
+  filter(Year == 2024) %>%
+  arrange(desc(GemiddeldeVerkoopprijs_1)) %>%
+  slice(1:15)
 
+ggplot(top_regions,
+       aes(
+         x = reorder(RegioS, GemiddeldeVerkoopprijs_1),
+         y = GemiddeldeVerkoopprijs_1
+       )) +
+  geom_col() +
+  coord_flip()
 ```
+**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
 
 Here you provide a description of why the plot above is relevant to your specific social problem.
 
 ## 3.5 Visualize sub-population variation
 
 What is the poverty rate by state?
+**Notitie voor de groep:** Pas deze tekst aan, want jullie onderzoeken geen poverty rate by state. Jullie kunnen hier uitleggen hoe besteedbaar inkomen verschilt tussen regio’s of inkomensgroepen. Beschrijf waarom inkomensverschillen belangrijk zijn voor woningbetaalbaarheid: een regio met hoge huizenprijzen is vooral problematisch als het inkomen daar niet even sterk meegroeit.
 
 ```{r visualise_subpopulations}
-dataset$inmetro <- dataset$inmetro %>% as.factor()
-# Boxplot of poverty rate by state using the 'midwest' dataset
-ggplot(dataset, aes(x = inmetro, y = percadultpoverty)) +
-  geom_boxplot() +
+income_2024 <- combined %>%
+  filter(Year == 2024)
+
+ggplot(income_2024,
+       aes(x = GemiddeldBesteedbaarInkomen_5)) +
+  geom_histogram(bins = 20) +
   labs(
-    title = "Distribution of Poverty Rates by Metropolitan status (Midwest counties)",
-    x = "Metropolitan Area",
-    y = "Poverty Rate of Adults (%)"
+    title = "Distribution of Disposable Income Across Regions (2024)",
+    x = "Disposable Income (thousand €)",
+    y = "Number of Regions"
   ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right"
-  )
+  theme_minimal()
 ```
 
 Here you provide a description of why the plot above is relevant to your specific social problem.
 
 ## 3.6 Event analysis
+**Notitie voor de groep:** Deze sectie is eigenlijk een relatie-analyse tussen twee variabelen. Leg uit dat jullie de relatie onderzoeken tussen gemiddeld besteedbaar inkomen en gemiddelde huizenprijs. Bespreek of regio’s met hogere inkomens ook hogere huizenprijzen hebben. Leg ook uit dat een positief verband niet automatisch betekent dat woningen betaalbaarder zijn.
 
 Analyze the relationship between two variables.
 
 ```{r analysis}
-
+ggplot(combined,
+       aes(
+         x = GemiddeldBesteedbaarInkomen_5,
+         y = GemiddeldeVerkoopprijs_1
+       )) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Income and House Prices",
+    x = "Disposable Income",
+    y = "House Price"
+  ) +
+  theme_minimal()
 ```
 
 Here you provide a description of why the plot above is relevant to your specific social problem.
@@ -150,13 +298,17 @@ Here you provide a description of why the plot above is relevant to your specifi
 # Part 4 - Discussion
 
 ## 4.1 Discuss your findings
+**Notitie voor de groep:** Vat hier de belangrijkste resultaten samen. Bespreek wat jullie grafieken laten zien over de ontwikkeling van huizenprijzen, regionale verschillen en de verhouding tussen huizenprijzen en inkomen. Beantwoord de centrale vraag: zijn woningen minder betaalbaar geworden of zijn er duidelijke regionale verschillen? Bespreek ook beperkingen van jullie analyse, bijvoorbeeld dat de data geaggregeerd is en geen individuele huishoudens volgt.
 
 # Part 5 - Reproducibility
 
 ## 5.1 Github repository link
 
 Provide the link to your PUBLIC repository here: ...
+**Notitie voor de groep:** Plaats hier de link naar jullie publieke GitHub repository. Controleer dat de repository openbaar is en dat iemand anders de code kan openen. Vermeld kort dat de R Markdown file, code en instructies daar beschikbaar zijn.
+
 
 ## 5.2 Reference list
+**Notitie voor de groep:** Zet hier alle bronnen in APA-stijl. Voeg in ieder geval de twee CBS StatLine datasets toe die jullie gebruiken. Voeg ook bronnen toe die jullie gebruiken om de woningcrisis of betaalbaarheid van woningen te onderbouwen. Zorg dat alle bronnen die in de tekst worden genoemd ook in de literatuurlijst staan.
 
 Use APA referencing throughout your document.
