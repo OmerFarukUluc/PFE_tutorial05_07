@@ -300,8 +300,14 @@ summary(combined$AffordabilityRatio)
 
 **Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis.
 =======
-<!-- **Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis. -->
->>>>>>> 45f98fcac9f46a0a08702354b3dc3f499f29d04d
+
+The first graph shows how average house prices in the Netherlands changed over time. Between 2011 and 2013, house prices went down from about €250,000 to €220,000. After 2014, prices started to rise again. The increase became much stronger after 2017, and between 2020 and 2022 prices grew very quickly. Although there was a small drop in 2023, prices increased again in 2024 to around €450,000, the highest point in the graph.
+
+The second graph shows how housing affordability changed over time. If affordability goes down, it means that houses become more expensive compared to people's incomes. Even if incomes increase, house prices may rise faster, making it harder for people to buy a home.
+
+Together, the graphs show that house prices have increased much more than incomes. As a result, people need to spend a larger part of their income on housing or take out bigger mortgages. This is especially difficult for first-time buyers and people with average incomes.
+
+These trends are closely related to the housing crisis in the Netherlands. Because there are not enough homes available, demand is higher than supply. This pushes house prices up and makes housing less affordable. The housing crisis can be seen in high house prices, long waiting lists for rental homes, and the difficulties many people face when trying to buy a house. Overall, the graphs show that housing has become less affordable over the years.
 
 ```{r}
 yearly_prices <- combined %>%
