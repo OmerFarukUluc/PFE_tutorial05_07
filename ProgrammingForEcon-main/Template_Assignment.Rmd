@@ -54,11 +54,40 @@ Preferably from a URL, but if not, make sure to download the data and store it i
 ```{r loading_data}
 dataset1 <- cbs_get_data("83625NED")
 dataset2 <- cbs_get_data("86161NED")
-
+```
+ 
+ 
+ 
+```{r}
 metadata1 <- cbs_get_meta("83625NED")
 metadata2 <- cbs_get_meta("86161NED")
+populatie_meta <- metadata2$Populatie
+regios_meta <- metadata2$RegioS
+huishouden_meta <- metadata2$KenmerkenVanHuishoudens
+```
 
 
+```{r}
+names(metadata1)
+names(populatie_meta)
+```
+
+
+```{r}
+names(metadata2)
+names(regios_meta)
+names(huishouden_meta)
+```
+
+```{r}
+populatie_meta %>%
+  filter(Key %in% unique(dataset2$Populatie))
+```
+
+
+```{r}
+huishouden_meta %>%
+  filter(Key %in% unique(dataset2$KenmerkenVanHuishoudens))
 ```
 
 ## 2.2 Provide a short summary of the dataset(s)
@@ -67,16 +96,25 @@ metadata2 <- cbs_get_meta("86161NED")
 
 ```{r}
 head(dataset1)
-head(dataset2)
 
 names(dataset1)
-names(dataset2)
 
 glimpse(dataset1)
-glimpse(dataset2)
 
 ```
 
+<<<<<<< HEAD
+=======
+
+```{r}
+head(dataset2)
+
+names(dataset2)
+
+glimpse(dataset2)
+```
+
+>>>>>>> 45f98fcac9f46a0a08702354b3dc3f499f29d04d
 **Notitie voor de groep:** Gebruik de output van `head()`, `names()` en `glimpse()` om in gewone zinnen te beschrijven hoe de data eruitziet. Schrijf niet alleen dat er kolommen zijn, maar leg uit welke kolommen jullie echt gebruiken en waarom.
 
 In this case we see 28 variables, but we miss some information on what units they are in. We also don't know anything about the year/moment in which this data has been captured.
@@ -116,6 +154,10 @@ housing <- dataset1 %>%
   )
 
 head(housing)
+```
+
+
+```{r data_cleaning}
 income <- dataset2 %>%
   filter(
     Populatie == "1050010",
@@ -125,38 +167,62 @@ income <- dataset2 %>%
     RegioS,
     Perioden,
     GemiddeldBesteedbaarInkomen_5
-  ) %>%
-  drop_na()
+  ) 
 
 head(income)
-nrow(income)
+```
 
+
+```{r data_cleaning}
 housing <- housing %>%
   drop_na()
 
 income <- income %>%
   drop_na()
+```
 
+
+```{r data_cleaning}
 nrow(housing)
-
-nrow(income)
-
 unique(housing$RegioS)[1:20]
+```
 
+
+```{r data_cleaning}
+nrow(income)
 unique(income$RegioS)[1:20]
+```
+
+
+```{r data_cleaning}
 combined <- housing %>%
   inner_join(
     income,
     by = c("RegioS", "Perioden")
   )
-
 head(combined)
-nrow(combined)
-summary(combined)
-unique(combined$Perioden)
+```
 
+
+```{r data_cleaning}
+summary(combined)
+```
+
+
+```{r data_cleaning}
+unique(combined$Perioden)
+```
+
+
+```{r data_cleaning}
 unique(dataset2$Populatie)
+```
+
+
+```{r data_cleaning}
 unique(dataset2$KenmerkenVanHuishoudens)
+unique(dataset2$Populatie)
+
 ```
 
 **Notitie voor de groep:** Schrijf onder deze code kort wat er is gebeurd. Bijvoorbeeld: eerst is een aparte housing-dataset gemaakt, daarna een aparte income-dataset. Vervolgens zijn missende waarden verwijderd en zijn de datasets samengevoegd. Gebruik de output van `nrow()` om te beschrijven hoeveel observaties overblijven na het opschonen.
@@ -183,74 +249,145 @@ combined <- combined %>%
   mutate(
     AffordabilityRatio = GemiddeldeVerkoopprijs_1 / (GemiddeldBesteedbaarInkomen_5 * 1000)
   )
-
 head(combined)
+```
+
+
+```{r gen_var2}
 summary(combined$AffordabilityRatio)
 ```
 
 ## 3.3 Visualize temporal variation
+<<<<<<< HEAD
 
 **Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis.
+=======
+<!-- **Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis. -->
+>>>>>>> 45f98fcac9f46a0a08702354b3dc3f499f29d04d
 
 ```{r}
 yearly_prices <- combined %>%
   group_by(Year) %>%
   summarise(
-    AveragePrice = mean(GemiddeldeVerkoopprijs_1)
+    AveragePrice = mean(GemiddeldeVerkoopprijs_1, na.rm = TRUE)
   )
+```
 
-ggplot(yearly_prices,
-       aes(x = Year,
-           y = AveragePrice)) +
+
+```{r}
+ggplot(yearly_prices, aes(x = Year, y = AveragePrice)) +
   geom_line() +
   geom_point() +
+  scale_x_continuous(
+    breaks = yearly_prices$Year
+  ) +
+  geom_vline(xintercept = 2013, linetype = "dashed", color = "red") +
+  geom_vline(xintercept = 2020, linetype = "dashed", color = "red") +
+  geom_vline(xintercept = 2022, linetype = "dashed", color = "red") +
+  annotate("text", x = 2013, y = max(yearly_prices$AveragePrice) * 0.95,
+           label = "Recovery starts", angle = 90, vjust = -0.4, size = 3) +
+  annotate("text", x = 2020, y = max(yearly_prices$AveragePrice) * 0.95,
+           label = "COVID period", angle = 90, vjust = -0.4, size = 3) +
+  annotate("text", x = 2022, y = max(yearly_prices$AveragePrice) * 0.95,
+           label = "Interest rate shift", angle = 90, vjust = -0.4, size = 3) +
   labs(
     title = "Average House Prices in the Netherlands (2011-2024)",
     x = "Year",
     y = "Average House Price (€)"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
+
+
+```{r}
 yearly_affordability <- combined %>%
   group_by(Year) %>%
   summarise(
     AverageAffordability = mean(AffordabilityRatio)
   )
+```
 
+
+```{r}
 ggplot(yearly_affordability,
        aes(x = Year,
            y = AverageAffordability)) +
   geom_line() +
   geom_point() +
+  scale_x_continuous(
+    breaks = yearly_affordability$Year
+  ) +
+  geom_vline(xintercept = 2013, linetype = "dashed", color = "red") +
+  geom_vline(xintercept = 2020, linetype = "dashed", color = "red") +
+  geom_vline(xintercept = 2022, linetype = "dashed", color = "red") +
+  annotate("text",
+           x = 2013, y = max(yearly_affordability$AverageAffordability, na.rm = TRUE) * 0.97, label = "Recovery starts", angle = 90, vjust = -0.5, size = 3) +
+  annotate("text",
+           x = 2020, y = max(yearly_affordability$AverageAffordability, na.rm = TRUE) * 0.97, label = "COVID period", angle = 90, vjust = -0.5, size = 3) +
+  annotate("text", x = 2022, y = max(yearly_affordability$AverageAffordability, na.rm = TRUE) * 0.97, label = "Interest rate shift", angle = 90, vjust = -0.5, size = 3) +
   labs(
     title = "Average Housing Affordability Ratio (2011-2024)",
     x = "Year",
     y = "House Price / Disposable Income"
   ) +
-  theme_minimal()
-
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
 ```
 
 ## 3.4 Visualize spatial variation
 
 **Notitie voor de groep:** Leg hier uit waarom regionale verschillen belangrijk zijn. Deze grafiek laat zien welke regio’s in 2024 de hoogste gemiddelde huizenprijzen hebben. Bespreek of sommige regio’s duidelijk duurder zijn dan andere en waarom dit relevant is voor het sociale probleem van woningbetaalbaarheid.
+```{r}
+regio_names <- regios_meta %>%
+  select(
+    RegioS = Key,
+    RegionName = Title
+  ) %>%
+  mutate(
+    RegioS = trimws(RegioS)
+  )
+
+combined <- combined %>%
+  mutate(
+    RegioS = trimws(RegioS)
+  ) %>%
+  left_join(
+    regio_names,
+    by = "RegioS"
+  )
+```
 
 ```{r visualise_map}
 top_regions <- combined %>%
   filter(Year == 2024) %>%
   arrange(desc(GemiddeldeVerkoopprijs_1)) %>%
-  slice(1:15)
+  slice(1:20)
+```
 
+
+```{r visualise_map}
 ggplot(top_regions,
        aes(
-         x = reorder(RegioS, GemiddeldeVerkoopprijs_1),
+         x = reorder(RegionName, GemiddeldeVerkoopprijs_1),
          y = GemiddeldeVerkoopprijs_1
        )) +
   geom_col() +
-  coord_flip()
+  coord_flip() +
+  labs(
+    title = "Top 20 Regions by Average House Price in 2024",
+    x = "Region",
+    y = "Average House Price (€)"
+  ) +
+  theme_minimal()
 ```
 
 **Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
-
+**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
 Here you provide a description of why the plot above is relevant to your specific social problem.
 
 ## 3.5 Visualize sub-population variation
@@ -278,7 +415,7 @@ Here you provide a description of why the plot above is relevant to your specifi
 
 **Notitie voor de groep:** Deze sectie is eigenlijk een relatie-analyse tussen twee variabelen. Leg uit dat jullie de relatie onderzoeken tussen gemiddeld besteedbaar inkomen en gemiddelde huizenprijs. Bespreek of regio’s met hogere inkomens ook hogere huizenprijzen hebben. Leg ook uit dat een positief verband niet automatisch betekent dat woningen betaalbaarder zijn.
 
-Analyze the relationship between two variables.
+Analyze the relationship between two variables. sdsdsds
 
 ```{r analysis}
 ggplot(combined,
