@@ -35,7 +35,17 @@ Use APA referencing throughout your document. [Here's a link to some explanation
 
 **Notitie voor de groep:** Beschrijf hier het sociale probleem dat jullie onderzoeken. Leg uit dat de woningmarkt in Nederland voor veel mensen minder betaalbaar is geworden. Bespreek waarom dit maatschappelijk relevant is, bijvoorbeeld voor starters, studenten, jonge huishoudens en middeninkomens. Leg ook kort uit waarom het nuttig is om huizenprijzen te vergelijken met besteedbaar inkomen. Gebruik hier minimaal één APA-bron om de relevantie van het probleem te ondersteunen.
 
-test
+Het sociale probleem
+De Nederlandse woningmarkt is de afgelopen jaren voor grote groepen mensen steeds minder toegankelijk geworden. Wonen is duur voor veel mensen die een woning zoeken — met name voor starters, mensen met een laag- of middeninkomen en alleenstaanden. De huizenprijzen zijn harder gestegen dan de maximale leencapaciteit op basis van inkomen, wat de betaalbaarheid van een woning sinds 2013 fors heeft verslechterd (De Nederlandsche Bank [DNB], 2026).
+De prijsstijgingen zijn aanzienlijk: een bestaande koopwoning was in 2024 gemiddeld 8,7 procent duurder dan in 2023, en in 2025 lagen de huizenprijzen gemiddeld nog eens 8,5 procent hoger dan het jaar daarvoor (Centraal Bureau voor de Statistiek [CBS], 2025a; DNB, 2026). Waar de gemiddelde woningprijs in 2023 nog op €416.000 lag, is deze in 2024 fors toegenomen tot gemiddeld €451.000 (BPD, z.d.).
+
+Waarom is dit relevant?
+De betaalbaarheidscrisis op de woningmarkt raakt een grote en diverse groep mensen in de Nederlandse samenleving. Zo'n 3 miljoen huishoudens — met een inkomen tussen modaal en twee keer modaal — hebben geen toegang tot de woningmarkt omdat beschikbare woningen boven hun budget liggen en er onvoldoende passend aanbod is (BPD, z.d.).
+Voor jongeren en starters is de situatie bijzonder nijpend. Het kopen of huren van een woning wordt steeds duurder, wat het moeilijk maakt voor starters om een woning te vinden, zoals zichtbaar is in het groeiende aandeel jongvolwassenen van 25 tot 30 jaar dat nog bij hun ouders woont (CBS, 2025b). De problemen die jongeren en starters momenteel hebben om de woningmarkt te betreden, zijn duidelijk zichtbaar in de eigenwoningbezitscijfers: pas bij de leeftijdsgroep van 35 tot 39 jaar is hetzelfde niveau van eigenwoningbezit als vroeger terug te zien (ABF Research, 2025).
+Ook studenten en jonge huishoudens worden hard geraakt door de krapte op de huurmarkt. Het aantal huurtransacties in de vrije sector lag eind 2025 maar liefst 38 procent lager dan een jaar eerder, en in de middensector daalde het aantal verhuurde woningen in de vier grote steden zelfs met 50 tot 70 procent (NVM, 2026).
+
+Waarom huizenprijzen vergelijken met besteedbaar inkomen?
+Om de betaalbaarheid van de woningmarkt werkelijk te begrijpen, is het noodzakelijk om huizenprijzen te relateren aan het besteedbaar inkomen van huishoudens. Huizenprijzen stijgen sneller dan de inkomens, waardoor de koopkracht van huizenkopers afneemt (Garantiemakelaars, 2025). Alleen door deze twee grootheden naast elkaar te leggen, wordt zichtbaar hoe groot de kloof werkelijk is — en voor wie wonen onbereikbaar dreigt te worden. Een absolute prijs van €451.000 zegt weinig zonder te weten wat een huishouden er maandelijks tegenover kan stellen.
 
 Include the following:
 
@@ -48,6 +58,17 @@ Include the following:
 ## 2.1 Load in the data
 
 **Notitie voor de groep:** Leg hier uit welke datasets jullie gebruiken en waar ze vandaan komen. Noem dat de data afkomstig is van CBS StatLine. Beschrijf kort dat één dataset informatie geeft over gemiddelde verkoopprijzen van bestaande koopwoningen en dat de andere dataset informatie geeft over gemiddeld besteedbaar inkomen van huishoudens. Vermeld ook waarom deze twee datasets samen nodig zijn voor jullie onderzoek.
+
+Welke datasets gebruiken wij en waar komen ze vandaan?
+Voor dit onderzoek maken wij gebruik van twee datasets die beide afkomstig zijn van CBS StatLine, de officiële statistiekendatabase van het Centraal Bureau voor de Statistiek (CBS). CBS StatLine is een betrouwbare en breed erkende bron binnen Nederland, die regelmatig wordt bijgewerkt met actuele cijfers over uiteenlopende maatschappelijke en economische onderwerpen.
+Dataset 1: Gemiddelde verkoopprijzen van bestaande koopwoningen
+De eerste dataset bevat informatie over de gemiddelde verkoopprijzen van bestaande koopwoningen in Nederland. Deze dataset geeft inzicht in hoe de huizenprijzen zich over de jaren heen hebben ontwikkeld, uitgesplitst naar regio en woningtype. Hiermee kunnen wij de prijsontwikkeling op de Nederlandse woningmarkt in kaart brengen.
+
+Dataset 2: Gemiddeld besteedbaar inkomen van huishoudens
+De tweede dataset bevat informatie over het gemiddeld besteedbaar inkomen van huishoudens in Nederland. Het besteedbaar inkomen geeft aan hoeveel geld huishoudens daadwerkelijk beschikbaar hebben na aftrek van belastingen en premies. Deze dataset maakt het mogelijk om de financiële positie van verschillende huishoudensgroepen in kaart te brengen.
+
+Waarom zijn beide datasets samen nodig?
+Beide datasets zijn noodzakelijk om de centrale vraag van ons onderzoek te kunnen beantwoorden. Een huizenprijs op zichzelf zegt namelijk weinig over de betaalbaarheid van de woningmarkt. Pas wanneer de prijsontwikkeling van woningen wordt afgezet tegen de ontwikkeling van het besteedbaar inkomen, wordt duidelijk of wonen voor huishoudens daadwerkelijk minder betaalbaar is geworden. Door de twee datasets te combineren, kunnen wij berekenen in hoeverre de groei van huizenprijzen de groei van inkomens heeft overtroffen, en wat dit betekent voor groepen zoals starters, studenten, jonge huishoudens en middeninkomens.
 
 Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
@@ -93,7 +114,24 @@ huishouden_meta %>%
 ## 2.2 Provide a short summary of the dataset(s)
 
 **Notitie voor de groep:** Geef hier een korte samenvatting van beide datasets. Beschrijf hoeveel rijen en kolommen de datasets ongeveer hebben, welke jaren erin zitten, welke regio’s worden gebruikt en welke variabelen belangrijk zijn voor jullie analyse. Leg vooral de betekenis uit van `RegioS`, `Perioden`, `GemiddeldeVerkoopprijs_1` en `GemiddeldBesteedbaarInkomen_5`. Vermeld ook de meeteenheden, bijvoorbeeld euro’s en duizend euro’s.
+Dataset 1: Gemiddelde verkoopprijzen van bestaande koopwoningen
+De eerste dataset (dataset1) bevat gegevens over de gemiddelde verkoopprijzen van bestaande koopwoningen in Nederland (Centraal Bureau voor de Statistiek [CBS], z.d.a). De dataset bestaat uit 23.095 rijen en 3 kolommen. De jaren in de dataset lopen vanaf 1995 tot en met de meest recente beschikbare jaren. De belangrijkste variabelen zijn:
 
+RegioS: deze variabele geeft aan voor welke regio de gegevens gelden. In deze dataset wordt de code "NL01" gebruikt, wat staat voor Nederland als geheel.
+Perioden: deze variabele geeft het jaartal aan waarover de meting is gedaan, weergegeven in het formaat "1995JJ00", "1996JJ00", enzovoort. "JJ00" staat voor een jaargemiddelde.
+GemiddeldeVerkoopprijs_1: dit is de belangrijkste variabele voor ons onderzoek. Het geeft de gemiddelde verkoopprijs weer van bestaande koopwoningen in Nederland, uitgedrukt in euro's. In 1995 bedroeg deze prijs bijvoorbeeld €93.750, oplopend tot €172.050 in het jaar 2000 (CBS, z.d.a).
+
+Dataset 2: Gemiddeld besteedbaar inkomen van huishoudens
+De tweede dataset (dataset2) bevat gegevens over het inkomen van huishoudens in Nederland (CBS, z.d.b). De dataset bestaat uit 6 rijen en 20 kolommen. De jaren in de dataset lopen vanaf 2011 tot en met 2016, op basis van de zichtbare observaties. De belangrijkste variabelen zijn:
+
+Populatie: een code die de populatiegroep aanduidt waarop de meting betrekking heeft.
+KenmerkenVanHuishoudens: een code die het type huishouden beschrijft, bijvoorbeeld eenpersoonshuishoudens of meerpersoonshuishoudens.
+RegioS: net als in dataset 1 geeft deze variabele de regio aan. Ook hier wordt "NL01" gebruikt voor heel Nederland (CBS, z.d.b).
+Perioden: het meetjaar, weergegeven in hetzelfde formaat als dataset 1, bijvoorbeeld "2011JJ00".
+GemiddeldBesteedbaarInkomen_5: dit is de belangrijkste variabele voor ons onderzoek. Het geeft het gemiddeld besteedbaar inkomen van huishoudens weer, uitgedrukt in duizenden euro's. Zo bedroeg het gemiddeld besteedbaar inkomen in 2011 ongeveer €36.600 (weergegeven als 36,6 in de dataset) (CBS, z.d.b).
+
+Waarom zijn deze variabelen samen relevant?
+Door de variabele GemiddeldeVerkoopprijs_1 uit dataset 1 te koppelen aan de variabele GemiddeldBesteedbaarInkomen_5 uit dataset 2, via de gemeenschappelijke variabelen RegioS en Perioden, kunnen wij per jaar analyseren hoe de verhouding tussen huizenprijzen en besteedbaar inkomen zich heeft ontwikkeld (De Nederlandsche Bank [DNB], 2026). Let hierbij op het verschil in meeteenheden: de verkoopprijzen zijn uitgedrukt in volledige euro's, terwijl het besteedbaar inkomen is uitgedrukt in duizenden euro's. Bij de analyse dient hiervoor gecorrigeerd te worden (CBS, z.d.a; CBS, z.d.b)
 ```{r}
 head(dataset1)
 
@@ -496,3 +534,18 @@ Provide the link to your PUBLIC repository here: ... **Notitie voor de groep:** 
 **Notitie voor de groep:** Zet hier alle bronnen in APA-stijl. Voeg in ieder geval de twee CBS StatLine datasets toe die jullie gebruiken. Voeg ook bronnen toe die jullie gebruiken om de woningcrisis of betaalbaarheid van woningen te onderbouwen. Zorg dat alle bronnen die in de tekst worden genoemd ook in de literatuurlijst staan.
 
 Use APA referencing throughout your document.
+
+Use APA referencing throughout your document.
+
+ABF Research & Ministerie van Binnenlandse Zaken. (2025). Woningmarktverkenning 2025–2040. https://open.overheid.nl/documenten/a639725d-2ae1-4fef-b4ee-0023c6b62f4a/file
+BPD. (z.d.). Betaalbaar wonen. https://www.bpd.nl/betaalbaar
+Centraal Bureau voor de Statistiek. (2025a). Bestaande koopwoningen bijna 9 procent duurder in 2024. https://www.cbs.nl/nl-nl/nieuws/2025/04/bestaande-koopwoningen-bijna-9-procent-duurder-in-2024
+Centraal Bureau voor de Statistiek. (2025b). Wonen: Monitor Brede Welvaart en de Sustainable Development Goals. https://www.cbs.nl/nl-nl/visualisaties/monitor-brede-welvaart-en-de-sustainable-development-goals/hier-en-nu/wonen
+De Nederlandsche Bank. (2026). De woningmarkt. https://www.dnb.nl/actuele-economische-vraagstukken/woningmarkt/
+Garantiemakelaars. (2025, 10 februari). Terugblik en vooruitblik: Wat brengt de woningmarkt in 2025? https://garantiemakelaars.nl/wat-brengt-2025/
+NVM. (2026, maart). Uitponden vergroot ongelijkheid starters: huurwoning verdwijnt, koopwoning onbereikbaar. https://www.nvm.nl/nieuws/2026/nvm-uitponden-vergroot-ongelijkheid-starters-huurwoning-verdwijnt-koopwoning-onbereikbaar/
+
+Centraal Bureau voor de Statistiek. (z.d.). CBS StatLine [Dataset]. https://opendata.cbs.nl/statline/
+Centraal Bureau voor de Statistiek. (z.d.a). Bestaande koopwoningen; verkoopprijzen prijsindex [Dataset]. CBS StatLine. https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83906NED/table
+Centraal Bureau voor de Statistiek. (z.d.b). Inkomen van huishoudens; besteedbaar inkomen [Dataset]. CBS StatLine. https://opendata.cbs.nl/statline/#/CBS/nl/dataset/84959NED/table
+De Nederlandsche Bank. (2026). De woningmarkt. https://www.dnb.nl/actuele-economische-vraagstukken/woningmarkt/
