@@ -417,6 +417,10 @@ ggplot(top_regions,
 ```
 
 =======
+**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
+>>>>>>> 84138f02eecc55c61867d316f1cce39f0461d2d1
+**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
+Here you provide a description of why the plot above is relevant to your specific social problem.
 
 
 ```{r}
@@ -459,7 +463,7 @@ ggplot(map_combined) +
   theme_minimal()
 ```
 
-The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren , followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
+The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren (NH.), followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
 
 Why are these regional differences important?
 
