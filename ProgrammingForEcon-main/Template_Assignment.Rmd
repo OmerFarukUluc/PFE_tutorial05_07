@@ -418,7 +418,7 @@ ggplot(top_regions,
 
 =======
 
-The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren (NH.), followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
+The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren, followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
 
 Why are these regional differences important?
 
