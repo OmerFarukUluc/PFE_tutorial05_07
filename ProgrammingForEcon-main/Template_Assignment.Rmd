@@ -117,23 +117,7 @@ names(dataset2)
 glimpse(dataset2)
 ```
 
-**Notitie voor de groep:** Gebruik de output van `head()`, `names()` en `glimpse()` om in gewone zinnen te beschrijven hoe de data eruitziet. Schrijf niet alleen dat er kolommen zijn, maar leg uit welke kolommen jullie echt gebruiken en waarom.
-
-In this case we see 28 variables, but we miss some information on what units they are in. We also don't know anything about the year/moment in which this data has been captured.
-
-These are things that are usually included in the metadata of the dataset. For your project, you need to provide us with the information from your metadata that we need to understand your dataset of choice.
-
 ## 2.3 Describe the type of variables included
-
-**Notitie voor de groep:** Beschrijf hier het type variabelen. `RegioS` is een categorische variabele, `Perioden` is een tijdsvariabele, en de huizenprijs en het besteedbaar inkomen zijn numerieke variabelen. Leg ook uit dat de data geaggregeerde regionale data is en dus geen persoonlijke gegevens van individuele mensen bevat. Benoem dat inkomen kan worden gezien als een sociaaleconomische variabele.
-
-Think of things like:
-
-- Do the variables contain health information or SES information?
-
-- Have they been measured by interviewing individuals or is the data coming from administrative sources?
-
-*For the sake of this example, I will continue with the assignment...*
 
 The dataset contains a mix of variable types. "RegioS" is a categorical variable that indicates the region, and "Perioden" is a time variable that shows the year of observation. Both "GemiddeldeVerkoopprijs_1" and "GemiddeldBesteedbaarInkomen_5" are numerical variables. The housing price data comes from administrative sources, specifically transaction records from the Kadaster (Land Registry). This means the prices reflect actual sales, not asking prices. The disposable income variable is a socioeconomic variable, also from administrative sources like tax records, and is measured in thousands of euros per household per year. One limitation worth noting is that both variables are measured at the regional level, so they represent averages. This means we cannot say anything about individual households. A region with a high average income may still have many people who struggle to afford a house there.
 
@@ -175,7 +159,7 @@ income <- income %>%
 drop_na()
 ```
 
-```{r data_cleaning}
+```{r}
 nrow(housing)
 unique(housing$RegioS)[1:20]
 ```
@@ -247,10 +231,15 @@ The second variable is `AffordabilityRatio`. This variable divides the average h
 ## 3.3 Visualize temporal variation
 
 ```{r}
-yearly_prices <- combined %>%
-  group_by(Year) %>%
-  summarise(
-    AveragePrice = mean(GemiddeldeVerkoopprijs_1, na.rm = TRUE)
+national_data <- combined %>%
+  mutate(RegioS = trimws(RegioS)) %>%
+  filter(RegioS == "NL01") %>%
+  arrange(Year)
+
+yearly_prices <- national_data %>%
+  transmute(
+    Year,
+    AveragePrice = GemiddeldeVerkoopprijs_1
   )
 ```
 
@@ -369,7 +358,7 @@ The graph shows the 15 most expensive municipalities in the Netherlands in 2024.
 
 Why are these regional differences important?
 
-Not everyone can afford to live everywhere People with lower or middle incomes cannot buy a home in these expensive areas. They have to move further away from work, family, or good schools. It creates inequality Rich people can live in the best neighborhoods, while others are pushed to cheaper regions. This makes the gap between rich and poor bigger. It affects daily life If you cannot afford a home near your job, you have to travel longer every day. This costs time and money, and it is bad for the environment. It makes the housing crisis worse The high prices in these regions show that there are not enough affordable homes where people want to live. This is a big social problem because having a safe, affordable home is a basic need. For our research: These regional differences are important because they show that the housing problem is not the same everywhere. Some areas are much more expensive, and this makes it harder for normal people to find a home. We need to understand why some places are so costly and how we can make housing more fair for everyone. \## 3.5 Visualize sub-population variation
+Not everyone can afford to live everywhere People with lower or middle incomes cannot buy a home in these expensive areas. They have to move further away from work, family, or good schools. It creates inequality. Rich people can live in the best neighborhoods, while others are pushed to cheaper regions. This makes the gap between rich and poor bigger. It affects daily life If you cannot afford a home near your job, you have to travel longer every day. This costs time and money, and it is bad for the environment. It makes the housing crisis worse The high prices in these regions show that there are not enough affordable homes where people want to live. This is a big social problem because having a safe, affordable home is a basic need. For our research: These regional differences are important because they show that the housing problem is not the same everywhere. Some areas are much more expensive, and this makes it harder for normal people to find a home. We need to understand why some places are so costly and how we can make housing more fair for everyone.
 
 ## 3.5 Visualize sub-population variation
 
