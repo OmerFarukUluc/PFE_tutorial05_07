@@ -35,8 +35,6 @@ Use APA referencing throughout your document. [Here's a link to some explanation
 
 ## 1.1 Describe the Social Problem
 
-**Notitie voor de groep:** Beschrijf hier het sociale probleem dat jullie onderzoeken. Leg uit dat de woningmarkt in Nederland voor veel mensen minder betaalbaar is geworden. Bespreek waarom dit maatschappelijk relevant is, bijvoorbeeld voor starters, studenten, jonge huishoudens en middeninkomens. Leg ook kort uit waarom het nuttig is om huizenprijzen te vergelijken met besteedbaar inkomen. Gebruik hier minimaal één APA-bron om de relevantie van het probleem te ondersteunen.
-
 Het sociale probleem De Nederlandse woningmarkt is de afgelopen jaren voor grote groepen mensen steeds minder toegankelijk geworden. Wonen is duur voor veel mensen die een woning zoeken — met name voor starters, mensen met een laag- of middeninkomen en alleenstaanden. De huizenprijzen zijn harder gestegen dan de maximale leencapaciteit op basis van inkomen, wat de betaalbaarheid van een woning sinds 2013 fors heeft verslechterd (De Nederlandsche Bank [DNB], 2026). De prijsstijgingen zijn aanzienlijk: een bestaande koopwoning was in 2024 gemiddeld 8,7 procent duurder dan in 2023, en in 2025 lagen de huizenprijzen gemiddeld nog eens 8,5 procent hoger dan het jaar daarvoor (Centraal Bureau voor de Statistiek [CBS], 2025a; DNB, 2026). Waar de gemiddelde woningprijs in 2023 nog op €416.000 lag, is deze in 2024 fors toegenomen tot gemiddeld €451.000 (BPD, z.d.).
 
 Waarom is dit relevant? De betaalbaarheidscrisis op de woningmarkt raakt een grote en diverse groep mensen in de Nederlandse samenleving. Zo'n 3 miljoen huishoudens — met een inkomen tussen modaal en twee keer modaal — hebben geen toegang tot de woningmarkt omdat beschikbare woningen boven hun budget liggen en er onvoldoende passend aanbod is (BPD, z.d.). Voor jongeren en starters is de situatie bijzonder nijpend. Het kopen of huren van een woning wordt steeds duurder, wat het moeilijk maakt voor starters om een woning te vinden, zoals zichtbaar is in het groeiende aandeel jongvolwassenen van 25 tot 30 jaar dat nog bij hun ouders woont (CBS, 2025b). De problemen die jongeren en starters momenteel hebben om de woningmarkt te betreden, zijn duidelijk zichtbaar in de eigenwoningbezitscijfers: pas bij de leeftijdsgroep van 35 tot 39 jaar is hetzelfde niveau van eigenwoningbezit als vroeger terug te zien (ABF Research, 2025). Ook studenten en jonge huishoudens worden hard geraakt door de krapte op de huurmarkt. Het aantal huurtransacties in de vrije sector lag eind 2025 maar liefst 38 procent lager dan een jaar eerder, en in de middensector daalde het aantal verhuurde woningen in de vier grote steden zelfs met 50 tot 70 procent (NVM, 2026).
@@ -47,15 +45,12 @@ Waarom huizenprijzen vergelijken met besteedbaar inkomen? Om de betaalbaarheid v
 
 ## 2.1 Load in the data
 
-**Notitie voor de groep:** Leg hier uit welke datasets jullie gebruiken en waar ze vandaan komen. Noem dat de data afkomstig is van CBS StatLine. Beschrijf kort dat één dataset informatie geeft over gemiddelde verkoopprijzen van bestaande koopwoningen en dat de andere dataset informatie geeft over gemiddeld besteedbaar inkomen van huishoudens. Vermeld ook waarom deze twee datasets samen nodig zijn voor jullie onderzoek.
-
 Welke datasets gebruiken wij en waar komen ze vandaan? Voor dit onderzoek maken wij gebruik van twee datasets die beide afkomstig zijn van CBS StatLine, de officiële statistiekendatabase van het Centraal Bureau voor de Statistiek (CBS). CBS StatLine is een betrouwbare en breed erkende bron binnen Nederland, die regelmatig wordt bijgewerkt met actuele cijfers over uiteenlopende maatschappelijke en economische onderwerpen. Dataset 1: Gemiddelde verkoopprijzen van bestaande koopwoningen De eerste dataset bevat informatie over de gemiddelde verkoopprijzen van bestaande koopwoningen in Nederland. Deze dataset geeft inzicht in hoe de huizenprijzen zich over de jaren heen hebben ontwikkeld, uitgesplitst naar regio en woningtype. Hiermee kunnen wij de prijsontwikkeling op de Nederlandse woningmarkt in kaart brengen.
 
 Dataset 2: Gemiddeld besteedbaar inkomen van huishoudens De tweede dataset bevat informatie over het gemiddeld besteedbaar inkomen van huishoudens in Nederland. Het besteedbaar inkomen geeft aan hoeveel geld huishoudens daadwerkelijk beschikbaar hebben na aftrek van belastingen en premies. Deze dataset maakt het mogelijk om de financiële positie van verschillende huishoudensgroepen in kaart te brengen.
 
 Waarom zijn beide datasets samen nodig? Beide datasets zijn noodzakelijk om de centrale vraag van ons onderzoek te kunnen beantwoorden. Een huizenprijs op zichzelf zegt namelijk weinig over de betaalbaarheid van de woningmarkt. Pas wanneer de prijsontwikkeling van woningen wordt afgezet tegen de ontwikkeling van het besteedbaar inkomen, wordt duidelijk of wonen voor huishoudens daadwerkelijk minder betaalbaar is geworden. Door de twee datasets te combineren, kunnen wij berekenen in hoeverre de groei van huizenprijzen de groei van inkomens heeft overtroffen, en wat dit betekent voor groepen zoals starters, studenten, jonge huishoudens en middeninkomens.
 
-Preferably from a URL, but if not, make sure to download the data and store it in a shared location that you can load the data in from. Do not store the data in a folder you include in the Github repository!
 
 ```{r loading_data}
 dataset1 <- cbs_get_data("83625NED")
@@ -65,6 +60,9 @@ dataset2 <- cbs_get_data("86161NED")
 ```{r}
 metadata1 <- cbs_get_meta("83625NED")
 metadata2 <- cbs_get_meta("86161NED")
+```
+
+```{r}
 populatie_meta <- metadata2$Populatie
 regios_meta <- metadata2$RegioS
 huishouden_meta <- metadata2$KenmerkenVanHuishoudens
@@ -83,12 +81,12 @@ names(huishouden_meta)
 
 ```{r}
 populatie_meta %>%
-  filter(Key %in% unique(dataset2$Populatie))
+filter(Key %in% unique(dataset2$Populatie))
 ```
 
 ```{r}
 huishouden_meta %>%
-  filter(Key %in% unique(dataset2$KenmerkenVanHuishoudens))
+filter(Key %in% unique(dataset2$KenmerkenVanHuishoudens))
 ```
 
 ## 2.2 Provide a short summary of the dataset(s)
@@ -109,7 +107,6 @@ head(dataset1)
 names(dataset1)
 
 glimpse(dataset1)
-
 ```
 
 ```{r}
@@ -144,12 +141,6 @@ The dataset contains a mix of variable types. "RegioS" is a categorical variable
 
 ## 3.1 Data cleaning
 
-**Notitie voor de groep:** Leg hier uit welke stappen jullie nemen om de data schoon te maken. Beschrijf dat jullie alleen de relevante kolommen selecteren, missende waarden verwijderen en de twee datasets samenvoegen op regio en periode. Leg ook uit waarom jullie filteren op specifieke huishoudcategorieën in de inkomensdataset. Noem dat `inner_join()` alleen observaties bewaart die in beide datasets voorkomen.
-
-Say we want to include only larger distances (above 2) in our dataset, we can filter for this.
-
-Before merging the two datasets, we first selected only the columns we actually need. For the housing dataset we kept "RegioS", "Perioden" and "GemiddeldeVerkoopprijs_1", and for the income dataset we kept "RegioS", "Perioden" and "GemiddeldBesteedbaarInkomen_5". We also filtered the income dataset on a specific household type, because the original dataset contains multiple population categories. We only kept the category that represents all private households, to make sure we are comparing the right group to the housing prices. After selecting the relevant columns, we removed all rows with missing values in both datasets using "drop_na()". This is important because missing values in either the price or income variable would make the analysis unreliable. After cleaning, the housing dataset had "r nrow(housing)" rows and the income dataset had "r nrow(income)" rows. Finally, we merged the two datasets using "inner_join()" on both "RegioS" and "Perioden". This means we only kept observations that appear in both datasets. The combined dataset ended up with "r nrow(combined)" rows, which means some regions or years were lost because they did not appear in both datasets. This is a limitation we should keep in mind when interpreting the results.
-
 ```{r data_cleaning}
 housing <- dataset1 %>%
   select(
@@ -161,7 +152,7 @@ housing <- dataset1 %>%
 head(housing)
 ```
 
-```{r data_cleaning}
+```{r}
 income <- dataset2 %>%
   filter(
     Populatie == "1050010",
@@ -176,12 +167,12 @@ income <- dataset2 %>%
 head(income)
 ```
 
-```{r data_cleaning}
+```{r}
 housing <- housing %>%
-  drop_na()
+drop_na()
 
 income <- income %>%
-  drop_na()
+drop_na()
 ```
 
 ```{r data_cleaning}
@@ -189,12 +180,12 @@ nrow(housing)
 unique(housing$RegioS)[1:20]
 ```
 
-```{r data_cleaning}
+```{r}
 nrow(income)
 unique(income$RegioS)[1:20]
 ```
 
-```{r data_cleaning}
+```{r}
 combined <- housing %>%
   inner_join(
     income,
@@ -203,33 +194,26 @@ combined <- housing %>%
 head(combined)
 ```
 
-```{r data_cleaning}
+```{r}
 summary(combined)
 ```
 
-```{r data_cleaning}
+```{r}
 unique(combined$Perioden)
 ```
 
-```{r data_cleaning}
+```{r}
 unique(dataset2$Populatie)
 ```
 
-```{r data_cleaning}
+```{r}
 unique(dataset2$KenmerkenVanHuishoudens)
 unique(dataset2$Populatie)
-
 ```
 
-**Notitie voor de groep:** Schrijf onder deze code kort wat er is gebeurd. Bijvoorbeeld: eerst is een aparte housing-dataset gemaakt, daarna een aparte income-dataset. Vervolgens zijn missende waarden verwijderd en zijn de datasets samengevoegd. Gebruik de output van `nrow()` om te beschrijven hoeveel observaties overblijven na het opschonen.
-
-Please use a separate 'R block' of code for each type of cleaning. So, e.g. one for missing values, a new one for removing unnecessary variables etc.
+Before merging the two datasets, we first selected only the columns we actually need. For the housing dataset we kept "RegioS", "Perioden" and "GemiddeldeVerkoopprijs_1", and for the income dataset we kept "RegioS", "Perioden" and "GemiddeldBesteedbaarInkomen_5". We also filtered the income dataset on a specific household type, because the original dataset contains multiple population categories. We only kept the category that represents all private households, to make sure we are comparing the right group to the housing prices. After selecting the relevant columns, we removed all rows with missing values in both datasets using "drop_na()". This is important because missing values in either the price or income variable would make the analysis unreliable. After cleaning, the housing dataset had "r nrow(housing)" rows and the income dataset had "r nrow(income)" rows. Finally, we merged the two datasets using "inner_join()" on both "RegioS" and "Perioden". This means we only kept observations that appear in both datasets. The combined dataset ended up with "r nrow(combined)" rows, which means some regions or years were lost because they did not appear in both datasets. This is a limitation we should keep in mind when interpreting the results.
 
 ## 3.2 Generate necessary variables
-
-Variable 1 - Year **Notitie voor de groep:** Leg hier uit waarom jullie de variabele `Year` maken. De originele CBS-periode staat bijvoorbeeld als `2011JJ00`, maar voor grafieken is een numeriek jaar makkelijker te gebruiken. Beschrijf dat jullie met `substr()` de eerste vier tekens uit `Perioden` halen. Variable 1 **Notitie voor de groep:** Leg hier uit waarom jullie de variabele `Year` maken. De originele CBS-periode staat bijvoorbeeld als `2011JJ00`, maar voor grafieken is een numeriek jaar makkelijker te gebruiken. Beschrijf dat jullie met `substr()` de eerste vier tekens uit `Perioden` halen.
-
-The first variable we created is "Year". In the original CBS data, the time variable "Perioden" is stored as a character string in the format `2011JJ00`, which is not directly usable in plots or calculations. By extracting the first four characters using "substr()" and converting them to a number with "as.numeric()", we get a clean numeric year variable that we can use on the x-axis of our time series plots.
 
 ```{r gen_var1}
 combined <- combined %>%
@@ -240,9 +224,9 @@ combined <- combined %>%
 head(combined)
 ```
 
-Variable 2 - AffordabilityRatio **Notitie voor de groep:** Leg hier uit waarom jullie de `AffordabilityRatio` maken. Deze ratio vergelijkt de gemiddelde huizenprijs met het gemiddelde besteedbaar inkomen. Een hogere ratio betekent dat woningen minder betaalbaar zijn. Leg ook uit waarom het inkomen met 1000 wordt vermenigvuldigd: de inkomensvariabele staat in duizenden euro’s. ======= Variable 2 **Notitie voor de groep:** Leg hier uit waarom jullie de `AffordabilityRatio` maken. Deze ratio vergelijkt de gemiddelde huizenprijs met het gemiddelde besteedbaar inkomen. Een hogere ratio betekent dat woningen minder betaalbaar zijn. Leg ook uit waarom het inkomen met 1000 wordt vermenigvuldigd: de inkomensvariabele staat in duizenden euro’s.
-
-The second variable is "AffordabilityRatio". This variable divides the average house price by the average disposable income per household. Because the income variable is stored in thousands of euros, we multiply it by 1000 before dividing. The result tells us how many annual incomes a household would need to buy an average house in that region and year. A higher ratio means housing is less affordable. This variable is central to our analysis because it combines both datasets into one meaningful measure of the housing problem. For example, a ratio of 8 means that an average household would need 8 years of their entire disposable income to buy an average house, without spending anything else. This makes the affordability problem more concrete.
+```{r}
+summary(combined$Year)
+```
 
 ```{r gen_var2}
 combined <- combined %>%
@@ -252,21 +236,15 @@ combined <- combined %>%
 head(combined)
 ```
 
-```{r gen_var2}
+```{r}
 summary(combined$AffordabilityRatio)
 ```
 
+The first variable we created is `Year`. In the original CBS data, the time variable `Perioden` is stored as a character string in the format `2011JJ00`, which is not directly usable in plots or calculations. By extracting the first four characters using `substr()` and converting them to a number with `as.numeric()`, we get a clean numeric year variable that we can use on the x-axis of our time series plots.
+
+The second variable is `AffordabilityRatio`. This variable divides the average house price by the average disposable income per household. Because the income variable is stored in thousands of euros, we multiply it by 1000 before dividing. The result tells us how many annual incomes a household would need to buy an average house in that region and year. A higher ratio means housing is less affordable. This variable is central to our analysis because it combines both datasets into one meaningful measure of the housing problem. For example, a ratio of 8 means that an average household would need 8 years of their entire disposable income to buy an average house, without spending anything else. This makes the affordability problem more concrete.
+
 ## 3.3 Visualize temporal variation
-
-**Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis.
-
-The first graph shows how average house prices in the Netherlands changed over time. Between 2011 and 2013, house prices went down from about €250,000 to €220,000. After 2014, prices started to rise again. The increase became much stronger after 2017, and between 2020 and 2022 prices grew very quickly. Although there was a small drop in 2023, prices increased again in 2024 to around €450,000, the highest point in the graph.
-
-The second graph shows how housing affordability changed over time. If affordability goes down, it means that houses become more expensive compared to people's incomes. Even if incomes increase, house prices may rise faster, making it harder for people to buy a home.
-
-Together, the graphs show that house prices have increased much more than incomes. As a result, people need to spend a larger part of their income on housing or take out bigger mortgages. This is especially difficult for first-time buyers and people with average incomes.
-
-These trends are closely related to the housing crisis in the Netherlands. Because there are not enough homes available, demand is higher than supply. This pushes house prices up and makes housing less affordable. The housing crisis can be seen in high house prices, long waiting lists for rental homes, and the difficulties many people face when trying to buy a house. Overall, the graphs show that housing has become less affordable over the years.
 
 ```{r}
 yearly_prices <- combined %>%
@@ -294,11 +272,17 @@ ggplot(yearly_prices, aes(x = Year, y = AveragePrice)) +
   )
 ```
 
+The first graph shows how average house prices in the Netherlands changed over time. Between 2011 and 2013, house prices went down from about €250,000 to €220,000. After 2014, prices started to rise again. The increase became much stronger after 2017, and between 2020 and 2022 prices grew very quickly. Although there was a small drop in 2023, prices increased again in 2024 to around €450,000, the highest point in the graph.
+
+The second graph shows how housing affordability changed over time. If affordability goes down, it means that houses become more expensive compared to people's incomes. Even if incomes increase, house prices may rise faster, making it harder for people to buy a home.
+
+Together, the graphs show that house prices have increased much more than incomes. As a result, people need to spend a larger part of their income on housing or take out bigger mortgages. This is especially difficult for first-time buyers and people with average incomes.
+
+These trends are closely related to the housing crisis in the Netherlands. Because there are not enough homes available, demand is higher than supply. This pushes house prices up and makes housing less affordable. The housing crisis can be seen in high house prices, long waiting lists for rental homes, and the difficulties many people face when trying to buy a house. Overall, the graphs show that housing has become less affordable over the years.
+
 ## 3.4 Visualize spatial variation
 
-**Notitie voor de groep:** Leg hier uit waarom regionale verschillen belangrijk zijn. Deze grafiek laat zien welke regio’s in 2024 de hoogste gemiddelde huizenprijzen hebben. Bespreek of sommige regio’s duidelijk duurder zijn dan andere en waarom dit relevant is voor het sociale probleem van woningbetaalbaarheid.
-
-```{r}
+```{r visualise_map}
 regio_names <- regios_meta %>%
   select(
     RegioS = Key,
@@ -318,14 +302,14 @@ combined <- combined %>%
   )
 ```
 
-```{r visualise_map}
+```{r}
 top_regions <- combined %>%
   filter(Year == 2024) %>%
   arrange(desc(GemiddeldeVerkoopprijs_1)) %>%
   slice(1:15)
 ```
 
-```{r visualise_map}
+```{r}
 ggplot(top_regions,
        aes(
          x = reorder(RegionName, GemiddeldeVerkoopprijs_1),
@@ -340,12 +324,6 @@ ggplot(top_regions,
   ) +
   theme_minimal()
 ```
-
-The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren, followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
-
-Why are these regional differences important?
-
-Not everyone can afford to live everywhere People with lower or middle incomes cannot buy a home in these expensive areas. They have to move further away from work, family, or good schools. It creates inequality Rich people can live in the best neighborhoods, while others are pushed to cheaper regions. This makes the gap between rich and poor bigger. It affects daily life If you cannot afford a home near your job, you have to travel longer every day. This costs time and money, and it is bad for the environment. It makes the housing crisis worse The high prices in these regions show that there are not enough affordable homes where people want to live. This is a big social problem because having a safe, affordable home is a basic need. For our research: These regional differences are important because they show that the housing problem is not the same everywhere. Some areas are much more expensive, and this makes it harder for normal people to find a home. We need to understand why some places are so costly and how we can make housing more fair for everyone.
 
 ```{r}
 gemeente_map <- cbs_get_sf(
@@ -392,11 +370,10 @@ The graph shows the 15 most expensive municipalities in the Netherlands in 2024.
 Why are these regional differences important?
 
 Not everyone can afford to live everywhere People with lower or middle incomes cannot buy a home in these expensive areas. They have to move further away from work, family, or good schools. It creates inequality Rich people can live in the best neighborhoods, while others are pushed to cheaper regions. This makes the gap between rich and poor bigger. It affects daily life If you cannot afford a home near your job, you have to travel longer every day. This costs time and money, and it is bad for the environment. It makes the housing crisis worse The high prices in these regions show that there are not enough affordable homes where people want to live. This is a big social problem because having a safe, affordable home is a basic need. For our research: These regional differences are important because they show that the housing problem is not the same everywhere. Some areas are much more expensive, and this makes it harder for normal people to find a home. We need to understand why some places are so costly and how we can make housing more fair for everyone. \## 3.5 Visualize sub-population variation
+
 ## 3.5 Visualize sub-population variation
 
- **Notitie voor de groep:** Pas deze tekst aan, want jullie onderzoeken geen poverty rate by state. Jullie kunnen hier uitleggen hoe besteedbaar inkomen verschilt tussen regio’s of inkomensgroepen. Beschrijf waarom inkomensverschillen belangrijk zijn voor woningbetaalbaarheid: een regio met hoge huizenprijzen is vooral problematisch als het inkomen daar niet even sterk meegroeit.
-
-```{r}
+```{r visualise_subpopulations}
 municipalities_2024 <- combined %>%
   mutate(
     RegioS = trimws(RegioS)
@@ -559,7 +536,7 @@ There are some limitations to our analysis. First we looked at numbers for each 
 
 ## 5.1 Github repository link
 
-Provide the link to your PUBLIC repository here: ... **Notitie voor de groep:** Plaats hier de link naar jullie publieke GitHub repository. Controleer dat de repository openbaar is en dat iemand anders de code kan openen. Vermeld kort dat de R Markdown file, code en instructies daar beschikbaar zijn.
+Provide the link to your PUBLIC repository here: https://github.com/OmerFarukUluc/PFE_tutorial05_07.git 
 
 ## 5.2 Reference list
 
