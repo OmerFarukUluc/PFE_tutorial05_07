@@ -3,9 +3,6 @@
 # Set-up your environment
 
 ```{r package_install, include=FALSE}
-```
-
-```{r package_install, include=FALSE}
 install.packages("tidyverse")
 install.packages("yaml")
 install.packages("rmarkdown")
@@ -47,12 +44,6 @@ Ook studenten en jonge huishoudens worden hard geraakt door de krapte op de huur
 Waarom huizenprijzen vergelijken met besteedbaar inkomen?
 Om de betaalbaarheid van de woningmarkt werkelijk te begrijpen, is het noodzakelijk om huizenprijzen te relateren aan het besteedbaar inkomen van huishoudens. Huizenprijzen stijgen sneller dan de inkomens, waardoor de koopkracht van huizenkopers afneemt (Garantiemakelaars, 2025). Alleen door deze twee grootheden naast elkaar te leggen, wordt zichtbaar hoe groot de kloof werkelijk is — en voor wie wonen onbereikbaar dreigt te worden. Een absolute prijs van €451.000 zegt weinig zonder te weten wat een huishouden er maandelijks tegenover kan stellen.
 
-Include the following:
-
-- Why is this relevant?
-
-- ...
-
 # Part 2 - Data Sourcing
 
 ## 2.1 Load in the data
@@ -77,8 +68,6 @@ dataset1 <- cbs_get_data("83625NED")
 dataset2 <- cbs_get_data("86161NED")
 ```
  
- 
- 
 ```{r}
 metadata1 <- cbs_get_meta("83625NED")
 metadata2 <- cbs_get_meta("86161NED")
@@ -87,12 +76,10 @@ regios_meta <- metadata2$RegioS
 huishouden_meta <- metadata2$KenmerkenVanHuishoudens
 ```
 
-
 ```{r}
 names(metadata1)
 names(populatie_meta)
 ```
-
 
 ```{r}
 names(metadata2)
@@ -104,7 +91,6 @@ names(huishouden_meta)
 populatie_meta %>%
   filter(Key %in% unique(dataset2$Populatie))
 ```
-
 
 ```{r}
 huishouden_meta %>%
@@ -141,8 +127,6 @@ glimpse(dataset1)
 
 ```
 
-<<<<<<< HEAD
-=======
 
 ```{r}
 head(dataset2)
@@ -151,15 +135,9 @@ names(dataset2)
 
 glimpse(dataset2)
 ```
-
->>>>>>> 45f98fcac9f46a0a08702354b3dc3f499f29d04d
 **Notitie voor de groep:** Gebruik de output van `head()`, `names()` en `glimpse()` om in gewone zinnen te beschrijven hoe de data eruitziet. Schrijf niet alleen dat er kolommen zijn, maar leg uit welke kolommen jullie echt gebruiken en waarom.
 
 In this case we see 28 variables, but we miss some information on what units they are in. We also don't know anything about the year/moment in which this data has been captured.
-
-``` r
-inline_code = TRUE
-```
 
 These are things that are usually included in the metadata of the dataset. For your project, you need to provide us with the information from your metadata that we need to understand your dataset of choice.
 
@@ -192,8 +170,6 @@ Before merging the two datasets, we first selected only the columns we actually 
 We also filtered the income dataset on a specific household type, because the original dataset contains multiple population categories. We only kept the category that represents all private households, to make sure we are comparing the right group to the housing prices.
 After selecting the relevant columns, we removed all rows with missing values in both datasets using "drop_na()". This is important because missing values in either the price or income variable would make the analysis unreliable. After cleaning, the housing dataset had "r nrow(housing)" rows and the income dataset had "r nrow(income)" rows.
 Finally, we merged the two datasets using "inner_join()" on both "RegioS" and "Perioden". This means we only kept observations that appear in both datasets. The combined dataset ended up with "r nrow(combined)" rows, which means some regions or years were lost because they did not appear in both datasets. This is a limitation we should keep in mind when interpreting the results.
-
-
 
 ```{r data_cleaning}
 housing <- dataset1 %>%
@@ -281,12 +257,9 @@ Please use a separate 'R block' of code for each type of cleaning. So, e.g. one 
 
 ## 3.2 Generate necessary variables
 
-<<<<<<< HEAD
 Variable 1 - Year
 **Notitie voor de groep:** Leg hier uit waarom jullie de variabele `Year` maken. De originele CBS-periode staat bijvoorbeeld als `2011JJ00`, maar voor grafieken is een numeriek jaar makkelijker te gebruiken. Beschrijf dat jullie met `substr()` de eerste vier tekens uit `Perioden` halen.
-=======
 Variable 1 **Notitie voor de groep:** Leg hier uit waarom jullie de variabele `Year` maken. De originele CBS-periode staat bijvoorbeeld als `2011JJ00`, maar voor grafieken is een numeriek jaar makkelijker te gebruiken. Beschrijf dat jullie met `substr()` de eerste vier tekens uit `Perioden` halen.
->>>>>>> fa33898693ec57884c04626aa23c73a881a19eaf
 
 
 The first variable we created is "Year". In the original CBS data, the time variable "Perioden" is stored as a character string in the format `2011JJ00`, which is not directly usable in plots or calculations. By extracting the first four characters using "substr()" and converting them to a number with "as.numeric()", we get a clean numeric year variable that we can use on the x-axis of our time series plots.
@@ -301,12 +274,10 @@ combined <- combined %>%
 head(combined)
 ```
 
-<<<<<<< HEAD
 Variable 2 - AffordabilityRatio
 **Notitie voor de groep:** Leg hier uit waarom jullie de `AffordabilityRatio` maken. Deze ratio vergelijkt de gemiddelde huizenprijs met het gemiddelde besteedbaar inkomen. Een hogere ratio betekent dat woningen minder betaalbaar zijn. Leg ook uit waarom het inkomen met 1000 wordt vermenigvuldigd: de inkomensvariabele staat in duizenden euro’s.
 =======
 Variable 2 **Notitie voor de groep:** Leg hier uit waarom jullie de `AffordabilityRatio` maken. Deze ratio vergelijkt de gemiddelde huizenprijs met het gemiddelde besteedbaar inkomen. Een hogere ratio betekent dat woningen minder betaalbaar zijn. Leg ook uit waarom het inkomen met 1000 wordt vermenigvuldigd: de inkomensvariabele staat in duizenden euro’s.
->>>>>>> fa33898693ec57884c04626aa23c73a881a19eaf
 
 The second variable is "AffordabilityRatio". This variable divides the average house price by the average disposable income per household. Because the income variable is stored in thousands of euros, we multiply it by 1000 before dividing. The result tells us how many annual incomes a household would need to buy an average house in that region and year. A higher ratio means housing is less affordable. This variable is central to our analysis because it combines both datasets into one meaningful measure of the housing problem.
 For example, a ratio of 8 means that an average household would need 8 years of their entire disposable income to buy an average house, without spending anything else. This makes the affordability problem more concrete.
@@ -326,10 +297,8 @@ summary(combined$AffordabilityRatio)
 ```
 
 ## 3.3 Visualize temporal variation
-<<<<<<< HEAD
 
 **Notitie voor de groep:** Beschrijf hier wat de tijdsgrafieken laten zien. De eerste grafiek laat zien hoe de gemiddelde huizenprijzen zich door de tijd ontwikkelen. De tweede grafiek laat zien hoe de betaalbaarheid verandert door de tijd. Bespreek of huizenprijzen stijgen of dalen en of woningen relatief duurder worden ten opzichte van inkomen. Koppel dit terug aan de woningcrisis.
-=======
 
 The first graph shows how average house prices in the Netherlands changed over time. Between 2011 and 2013, house prices went down from about €250,000 to €220,000. After 2014, prices started to rise again. The increase became much stronger after 2017, and between 2020 and 2022 prices grew very quickly. Although there was a small drop in 2023, prices increased again in 2024 to around €450,000, the highest point in the graph.
 
@@ -416,7 +385,6 @@ ggplot(top_regions,
   theme_minimal()
 ```
 
-=======
 
 The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren, followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
 
@@ -473,7 +441,7 @@ ggplot(map_combined) +
   theme_minimal()
 ```
 
-The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren (NH.), followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
+The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren, followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
 
 Why are these regional differences important?
 
