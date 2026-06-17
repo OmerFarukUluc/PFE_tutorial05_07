@@ -22,24 +22,6 @@ require(cbsodataR)
 # Title Page
 
 **Notitie voor de groep:** Vul hier de titel van het project, de namen van alle groepsleden, studentnummers, het tutorialgroepnummer en de naam van de tutorialdocent in. Zorg dat dit er netjes uitziet als een echte titelpagina.
-```{r}
-```
-
-
-```{r}
-```
-
-
-```{r}
-```
-
-
-```{r}
-```
-
-
-```{r}
-```
 
 Include your names Andre Gouda Include the tutorial group number
 
@@ -435,10 +417,6 @@ ggplot(top_regions,
 ```
 
 =======
-**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
->>>>>>> 84138f02eecc55c61867d316f1cce39f0461d2d1
-**Notitie voor de groep:** Schrijf hier in eigen woorden wat de grafiek laat zien. Noem de belangrijkste regio’s uit de grafiek en leg uit waarom regionale verschillen in huizenprijzen belangrijk zijn voor jullie onderzoek.
-Here you provide a description of why the plot above is relevant to your specific social problem.
 
 
 ```{r}
@@ -481,6 +459,20 @@ ggplot(map_combined) +
   theme_minimal()
 ```
 
+The graph shows the 15 most expensive municipalities in the Netherlands in 2024. The highest average house price is in Laren , followed by Bloemendaal and Blaricum. Other expensive areas are Wassenaar, Heemstede, Gooise Meren, Wijdemeren, and Amstelveen. Even Amsterdam, the biggest city, is only number 14 on the list. Some smaller places like De Bilt and Utrechtse Heuvelrug are actually more expensive than many cities.
+
+Why are these regional differences important?
+
+Not everyone can afford to live everywhere
+People with lower or middle incomes cannot buy a home in these expensive areas. They have to move further away from work, family, or good schools.
+It creates inequality
+Rich people can live in the best neighborhoods, while others are pushed to cheaper regions. This makes the gap between rich and poor bigger.
+It affects daily life
+If you cannot afford a home near your job, you have to travel longer every day. This costs time and money, and it is bad for the environment.
+It makes the housing crisis worse
+The high prices in these regions show that there are not enough affordable homes where people want to live. This is a big social problem because having a safe, affordable home is a basic need.
+For our research:
+These regional differences are important because they show that the housing problem is not the same everywhere. Some areas are much more expensive, and this makes it harder for normal people to find a home. We need to understand why some places are so costly and how we can make housing more fair for everyone.
 ## 3.5 Visualize sub-population variation
 
 What is the poverty rate by state? **Notitie voor de groep:** Pas deze tekst aan, want jullie onderzoeken geen poverty rate by state. Jullie kunnen hier uitleggen hoe besteedbaar inkomen verschilt tussen regio’s of inkomensgroepen. Beschrijf waarom inkomensverschillen belangrijk zijn voor woningbetaalbaarheid: een regio met hoge huizenprijzen is vooral problematisch als het inkomen daar niet even sterk meegroeit.
