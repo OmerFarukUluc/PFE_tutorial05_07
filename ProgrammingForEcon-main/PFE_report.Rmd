@@ -1,7 +1,7 @@
 
 ---
 title: "Housing Affordability in the Netherlands (2011-2024)"
-author: "Andre Gouda,Ömer Faruk Uluç - 2805832"
+author: "Andre Gouda, Ömer Faruk Uluç - 2805832"
 date: "`r Sys.Date()`"
 output: pdf_document
 editor_options:
@@ -26,9 +26,6 @@ library(cbsodataR)
 library(sf)
 ```
 
-
-# Set-up your environment
-
 ```{r packages}
 require(tidyverse)
 require(rmarkdown)
@@ -37,9 +34,8 @@ require(cbsodataR)
 require(sf)
 ```
 
-# Title Page
 
-**Housing Affordability in the Netherlands (2011–2024)**
+
 
 # Part 1 - Identify a Social Problem
 
@@ -565,6 +561,20 @@ Provide the link to your PUBLIC repository here: <https://github.com/OmerFarukUl
 
 ## 5.2 Reference list
 
-ABF Research & Ministerie van Binnenlandse Zaken. (2025). Woningmarktverkenning 2025–2040. <https://open.overheid.nl/documenten/a639725d-2ae1-4fef-b4ee-0023c6b62f4a/file> BPD. (z.d.). Betaalbaar wonen. <https://www.bpd.nl/betaalbaar> Centraal Bureau voor de Statistiek. (2025a). Bestaande koopwoningen bijna 9 procent duurder in 2024. <https://www.cbs.nl/nl-nl/nieuws/2025/04/bestaande-koopwoningen-bijna-9-procent-duurder-in-2024> Centraal Bureau voor de Statistiek. (2025b). Wonen: Monitor Brede Welvaart en de Sustainable Development Goals. <https://www.cbs.nl/nl-nl/visualisaties/monitor-brede-welvaart-en-de-sustainable-development-goals/hier-en-nu/wonen> De Nederlandsche Bank. (2026). De woningmarkt. <https://www.dnb.nl/actuele-economische-vraagstukken/woningmarkt/> Garantiemakelaars. (2025, 10 februari). Terugblik en vooruitblik: Wat brengt de woningmarkt in 2025? <https://garantiemakelaars.nl/wat-brengt-2025/> NVM. (2026, maart). Uitponden vergroot ongelijkheid starters: huurwoning verdwijnt, koopwoning onbereikbaar. <https://www.nvm.nl/nieuws/2026/nvm-uitponden-vergroot-ongelijkheid-starters-huurwoning-verdwijnt-koopwoning-onbereikbaar/>
+ABF Research & Ministerie van Binnenlandse Zaken. (2025). *Woningmarktverkenning 2025–2040*. https://open.overheid.nl/documenten/a639725d-2ae1-4fef-b4ee-0023c6b62f4a/file
 
-Centraal Bureau voor de Statistiek. (n.d). CBS StatLine [Dataset]. <https://opendata.cbs.nl/statline/> Centraal Bureau voor de Statistiek. (n.d). Centraal Bureau voor de Statistiek. (n.d.-a). Bestaande koopwoningen; verkoopprijzen regio [Data set] (83625NED). CBS StatLine. <https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83625NED/table> Centraal Bureau voor de Statistiek. (n.d). Centraal Bureau voor de Statistiek. (n.d.-b). Inkomen van huishoudens; regio [Data set] (86161NED). CBS StatLine. <https://opendata.cbs.nl/statline/#/CBS/nl/dataset/86161NED/table> De Nederlandsche Bank. (2026). De woningmarkt. <https://www.dnb.nl/actuele-economische-vraagstukken/woningmarkt/>
+BPD. (n.d.). *Betaalbaar wonen*. https://www.bpd.nl/betaalbaar
+
+Centraal Bureau voor de Statistiek. (2025a). *Bestaande koopwoningen bijna 9 procent duurder in 2024*. https://www.cbs.nl/nl-nl/nieuws/2025/04/bestaande-koopwoningen-bijna-9-procent-duurder-in-2024
+
+Centraal Bureau voor de Statistiek. (2025b). *Wonen: Monitor Brede Welvaart en de Sustainable Development Goals*. https://www.cbs.nl/nl-nl/visualisaties/monitor-brede-welvaart-en-de-sustainable-development-goals/hier-en-nu/wonen
+
+Centraal Bureau voor de Statistiek. (n.d.-a). *Bestaande koopwoningen; verkoopprijzen regio* (Dataset 83625NED). CBS StatLine. https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83625NED/table
+
+Centraal Bureau voor de Statistiek. (n.d.-b). *Inkomen van huishoudens; regio* (Dataset 86161NED). CBS StatLine. https://opendata.cbs.nl/statline/#/CBS/nl/dataset/86161NED/table
+
+De Nederlandsche Bank. (2026). *De woningmarkt*. https://www.dnb.nl/actuele-economische-vraagstukken/woningmarkt/
+
+Garantiemakelaars. (2025, February 10). *Terugblik en vooruitblik: Wat brengt de woningmarkt in 2025?* https://garantiemakelaars.nl/wat-brengt-2025/
+
+NVM. (2026, March). *Uitponden vergroot ongelijkheid starters: huurwoning verdwijnt, koopwoning onbereikbaar*. https://www.nvm.nl/nieuws/2026/nvm-uitponden-vergroot-ongelijkheid-starters-huurwoning-verdwijnt-koopwoning-onbereikbaar/
