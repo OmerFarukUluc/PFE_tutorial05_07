@@ -79,10 +79,12 @@ Therefore, this study addresses the following research question:
 ## 2.1 Load in the data
 
 ### Which datasets do we use and where do they come from?
+
 For this research, we make use of two datasets that both originate from CBS StatLine, the official statistics database of Statistics Netherlands (Centraal Bureau voor de Statistiek [CBS], n.d.a).
 CBS StatLine is a reliable and widely recognised source within the Netherlands, which is regularly updated with current figures on a wide range of social and economic topics.
 
 #### Dataset 1: Average selling prices of existing owner-occupied homes The first dataset contains information on the average selling prices of existing owner-occupied homes in the Netherlands.
+
 This dataset provides insight into how house prices have developed over the years(CBS, n.d.a).
 This dataset provides information on average selling prices by region and year.
 This allows us to map the price developments on the Dutch housing market.
@@ -91,12 +93,14 @@ The prices refer to completed sales of existing owner-occupied homes rather than
 These transactions are registered through the Dutch Land Registry, the Kadaster, and processed by CBS.
 
 #### Dataset 2: Average disposable income of households The second dataset contains information on the average disposable income of households in the Netherlands.
+
 Disposable income refers to the amount of money households actually have available after the deduction of taxes and social contributions (CBS, n.d.b).
 This dataset makes it possible to map the financial position of different household groups.
 The household-income data are mainly based on administrative registers, including tax and income records.
 Because CBS uses administrative sources, the dataset covers a large part of the population rather than relying only on a small survey sample.
 
 ### Why are both datasets needed together?
+
 Both datasets are necessary in order to answer the central question of our research.
 A house price on its own says little about the affordability of the housing market.
 Only when the development of house prices is compared to the development of disposable income does it become clear whether housing has actually become less affordable for households (De Nederlandsche Bank [DNB], 2026).
@@ -145,8 +149,7 @@ Dataset 1: Average selling prices of existing owner-occupied homes The first dat
 The dataset consists of 23,095 rows and 3 columns.
 The dataset contains annual observations from 2011 to 2024.
 
-The most important variables are:
-RegioS: RegioS contains codes for several geographical levels.
+The most important variables are: RegioS: RegioS contains codes for several geographical levels.
 The code NL01 represents the Netherlands as a whole, while codes beginning with GM represent municipalities.
 Perioden: this variable indicates the year over which the measurement was taken, displayed in the format "1995JJ00", "1996JJ00", and so on.
 "JJ00" refers to an annual average.
@@ -408,11 +411,17 @@ ggplot(
     )
   )
 ```
-The graph shows that the House Price Index declined between 2011 and 2013, indicating that average house prices were lower than in the base year. After 2013, the index began to rise, with particularly strong growth between 2020 and 2022. There was a temporary decline in 2023, followed by another increase in 2024.
 
-The House Price Index reached approximately `r round(index_2024, 1)` in 2024. Since 2011 is defined as 100, this means that average house prices were approximately `r round(index_2024 - 100, 1)`% higher in 2024 than in 2011.
+The graph shows that the House Price Index declined between 2011 and 2013, indicating that average house prices were lower than in the base year.
+After 2013, the index began to rise, with particularly strong growth between 2020 and 2022.
+There was a temporary decline in 2023, followed by another increase in 2024.
 
-The dashed line marks the beginning of the COVID-19 period in 2020. House-price growth accelerated after this point. However, the graph only shows a temporal association and does not demonstrate that the COVID-19 pandemic caused the increase.
+The House Price Index reached approximately `r round(index_2024, 1)` in 2024.
+Since 2011 is defined as 100, this means that average house prices were approximately `r round(index_2024 - 100, 1)`% higher in 2024 than in 2011.
+
+The dashed line marks the beginning of the COVID-19 period in 2020.
+House-price growth accelerated after this point.
+However, the graph only shows a temporal association and does not demonstrate that the COVID-19 pandemic caused the increase.
 
 ## 3.4 Visualize spatial variation
 
@@ -540,13 +549,20 @@ ggplot(
     axis.text.x = element_text(angle = 25, hjust = 1)
   )
 ```
-The municipalities were divided into five equally sized groups based on their average house prices in 2024. The first group contains the highest-price 20% of municipalities, while the final group contains the lowest-price 20%.
 
-The boxplot shows that the distributions of disposable income overlap strongly across the five house-price groups. The median income levels are relatively similar, although the highest-price group contains several municipalities with unusually high disposable incomes.
+The municipalities were divided into five equally sized groups based on their average house prices in 2024.
+The first group contains the highest-price 20% of municipalities, while the final group contains the lowest-price 20%.
 
-This suggests that differences in disposable income do not fully explain the much larger regional differences in house prices. Municipalities can therefore have very different house prices even when their average income levels are relatively similar. Housing affordability depends on the relationship between income and house prices rather than on income alone.
+The boxplot shows that the distributions of disposable income overlap strongly across the five house-price groups.
+The median income levels are relatively similar, although the highest-price group contains several municipalities with unusually high disposable incomes.
 
-There is also substantial variation within the groups. Municipalities belonging to the same house-price group can still have different income levels. A limitation is that the analysis uses municipal averages and cannot show differences between individual households within the same municipality.
+This suggests that differences in disposable income do not fully explain the much larger regional differences in house prices.
+Municipalities can therefore have very different house prices even when their average income levels are relatively similar.
+Housing affordability depends on the relationship between income and house prices rather than on income alone.
+
+There is also substantial variation within the groups.
+Municipalities belonging to the same house-price group can still have different income levels.
+A limitation is that the analysis uses municipal averages and cannot show differences between individual households within the same municipality.
 
 ## 3.6 Event analysis
 
@@ -625,7 +641,8 @@ The results should therefore be interpreted as descriptive rather than causal.
 
 ## 4.1 Discuss your findings
 
-Housing affordability in the Netherlands deteriorated substantially between 2011 and 2024. At first the average price of a house went down from 2011 to 2013.
+Housing affordability in the Netherlands deteriorated substantially between 2011 and 2024.
+At first the average price of a house went down from 2011 to 2013.
 Then it started going up again after 2014.
 The price increase got really strong between 2020 and 2022.
 Even though prices went down a bit in 2023 they went back up in 2024.
@@ -636,11 +653,19 @@ So even if peoples income went up it was not enough to keep up with the rising h
 This made it harder for people who rely on their income to buy a house.
 
 If we look at parts of the Netherlands we can see that the housing problem is not the same everywhere.
-The expensive places to live are mostly in the west and center of the country but there are also some expensive places in other areas.The map shows that several of the most expensive municipalities are located in the western and central Netherlands. Some smaller municipalities have higher average house prices than major cities.
+The expensive places to live are mostly in the west and center of the country but there are also some expensive places in other areas.The map shows that several of the most expensive municipalities are located in the western and central Netherlands.
+Some smaller municipalities have higher average house prices than major cities.
 
-The income distributions overlap strongly across the five house-price groups. This suggests that income differences alone do not explain the much larger differences in house prices. The difference in income is not as big as the difference in house prices. Similar average income levels do not necessarily imply similar levels of housing affordability. The expensive places might still be too expensive for people with low or middle incomes.
+The income distributions overlap strongly across the five house-price groups.
+This suggests that income differences alone do not explain the much larger differences in house prices.
+The difference in income is not as big as the difference in house prices.
+Similar average income levels do not necessarily imply similar levels of housing affordability.
+The expensive places might still be too expensive for people with low or middle incomes.
 
-We also looked at what happened over time. The event analysis indicates that the deterioration in housing affordability accelerated after 2020. We should not think that the COVID-19 pandemic was the only reason for this. Other things like interest rates the number of houses inflation changes in income and housing policies also changed during this time.
+We also looked at what happened over time.
+The event analysis indicates that the deterioration in housing affordability accelerated after 2020.
+We should not think that the COVID-19 pandemic was the only reason for this.
+Other things like interest rates the number of houses inflation changes in income and housing policies also changed during this time.
 
 Overall the results show that housing in the Netherlands got less affordable between 2011 and 2024 and there are differences in different parts of the country.
 So the housing crisis is a problem that affects both time and place: affordability has gotten worse over time.
@@ -657,11 +682,14 @@ With these limitations looking at house prices and income data together gives us
 # Part 5 - Reproducibility
 
 ## 5.1 Github repository link
-The analysis can be reproduced by cloning the public GitHub repository, opening the R project in RStudio and knitting the R Markdown file. The two datasets are downloaded directly from CBS StatLine through the cbsodataR package, using table IDs 83625NED and 86161NED.
+
+The analysis can be reproduced by cloning the public GitHub repository, opening the R project in RStudio and knitting the R Markdown file.
+The two datasets are downloaded directly from CBS StatLine through the cbsodataR package, using table IDs 83625NED and 86161NED.
 
 Provide the link to your PUBLIC repository here: <https://github.com/OmerFarukUluc/PFE_tutorial05_07.git>
 
 ## 5.2 Reference list
+
 ABF Research & Ministerie van Binnenlandse Zaken.
 (2025).
 Woningmarktverkenning 2025–2040.
@@ -713,10 +741,16 @@ Centraal Bureau voor de Statistiek.
 CBS StatLine [Dataset].
 <https://opendata.cbs.nl/statline/> Centraal Bureau voor de Statistiek.
 (n.d).
-Centraal Bureau voor de Statistiek. (n.d.-a). Bestaande koopwoningen; verkoopprijzen regio [Data set] (83625NED). CBS StatLine.
+Centraal Bureau voor de Statistiek.
+(n.d.-a).
+Bestaande koopwoningen; verkoopprijzen regio [Data set] (83625NED).
+CBS StatLine.
 <https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83625NED/table> Centraal Bureau voor de Statistiek.
 (n.d).
-Centraal Bureau voor de Statistiek. (n.d.-b). Inkomen van huishoudens; regio [Data set] (86161NED). CBS StatLine.
+Centraal Bureau voor de Statistiek.
+(n.d.-b).
+Inkomen van huishoudens; regio [Data set] (86161NED).
+CBS StatLine.
 <https://opendata.cbs.nl/statline/#/CBS/nl/dataset/86161NED/table> De Nederlandsche Bank.
 (2026).
 De woningmarkt.
